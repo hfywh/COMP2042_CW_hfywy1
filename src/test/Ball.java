@@ -14,10 +14,10 @@ abstract public class Ball {
 
     private Point2D center;
 
-    Point2D up;
-    Point2D down;
-    Point2D left;
-    Point2D right;
+    public Point2D up;
+    public Point2D down;
+    public Point2D left;
+    public Point2D right;
 
     private Color border;
     private Color inner;
@@ -43,8 +43,8 @@ abstract public class Ball {
         ballFace = makeBall(center,radiusA,radiusB);
         this.border = border;
         this.inner  = inner;
-        speedX = 0;
-        speedY = 0;
+        setXSpeed(0);
+        setYSpeed(0);
     }
 
     protected abstract Shape makeBall(Point2D center,int radiusA,int radiusB);
@@ -63,8 +63,8 @@ abstract public class Ball {
     }
 
     public void setSpeed(int x,int y){
-        speedX = x;
-        speedY = y;
+        setXSpeed(x);
+        setYSpeed(y);
     }
 
     public void setXSpeed(int s){
