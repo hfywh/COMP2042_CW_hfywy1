@@ -105,18 +105,14 @@ public class Levels {
 
     private Brick makeBrick(Point point, Dimension size, int type){
         Brick out;
-        switch(type){
-            case CLAY:
-                out = new ClayBrick(point,size);
-                break;
-            case STEEL:
-                out = new SteelBrick(point,size);
-                break;
-            case CEMENT:
-                out = new CementBrick(point, size);
-                break;
-            default:
-                throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
+        if (type == CLAY) {
+            out = new ClayBrick(point, size);
+        } else if (type == STEEL) {
+            out = new SteelBrick(point, size);
+        } else if (type == CEMENT) {
+            out = new CementBrick(point, size);
+        } else {
+            throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         }
         return  out;
     }
