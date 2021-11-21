@@ -31,21 +31,14 @@ public class Wall {
     Ball ball;
     Player player;
 
-    private Brick[][] levels;
-    private int level;
-
     private Point startPoint;
     private int brickCount;
     private int ballCount;
     private boolean ballLost;
 
-    public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
+    public Wall(Rectangle drawArea, Point ballPos){
 
         this.startPoint = new Point(ballPos);
-
-        Levels levelsobj = new Levels();
-        levels = levelsobj.makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
-        level = 0;
 
         ballCount = 3;
         ballLost = false;
@@ -103,22 +96,25 @@ public class Wall {
 
     private boolean impactWall(){
         for(Brick b : bricks){
-            switch(b.findImpact(ball)) {
-                //Vertical Impact
-                case Brick.UP_IMPACT:
+            //Vertical Impact
+            //Horizontal Impact
+            switch (b.findImpact(ball)) {
+                case Brick.UP_IMPACT -> {
                     ball.reverseY();
                     return b.setImpact(ball.down, Brick.Crack.UP);
-                case Brick.DOWN_IMPACT:
+                }
+                case Brick.DOWN_IMPACT -> {
                     ball.reverseY();
-                    return b.setImpact(ball.up,Brick.Crack.DOWN);
-
-                //Horizontal Impact
-                case Brick.LEFT_IMPACT:
+                    return b.setImpact(ball.up, Brick.Crack.DOWN);
+                }
+                case Brick.LEFT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.right,Brick.Crack.RIGHT);
-                case Brick.RIGHT_IMPACT:
+                    return b.setImpact(ball.right, Brick.Crack.RIGHT);
+                }
+                case Brick.RIGHT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.left,Brick.Crack.LEFT);
+                    return b.setImpact(ball.left, Brick.Crack.LEFT);
+                }
             }
         }
         return false;
@@ -171,15 +167,6 @@ public class Wall {
         return brickCount == 0;
     }
 
-    public void nextLevel(){
-        bricks = levels[level++];
-        this.brickCount = bricks.length;
-    }
-
-    public boolean hasLevel(){
-        return level < levels.length;
-    }
-
     public void setBallXSpeed(int s){
         ball.setXSpeed(s);
     }
@@ -190,6 +177,18 @@ public class Wall {
 
     public void resetBallCount(){
         ballCount = 3;
+    }
+
+    public void setBricks(Brick[] bricks) {
+        this.bricks = bricks;
+    }
+
+    public void setBrickCount(int brickCount){
+        this.brickCount = brickCount;
+    }
+
+    public Brick[] getBricks() {
+        return bricks;
     }
 
 }

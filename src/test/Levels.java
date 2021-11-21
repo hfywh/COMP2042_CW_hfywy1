@@ -9,6 +9,16 @@ public class Levels {
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
 
+    private Brick[][] levels;
+    private int level;
+    private Wall wall;
+
+    public Levels(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
+        levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
+        level = 0;
+        this.wall = wall;
+    }
+
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -115,6 +125,15 @@ public class Levels {
             throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         }
         return  out;
+    }
+
+    public void nextLevel(){
+        wall.setBricks(levels[level++]);
+        wall.setBrickCount(wall.getBricks().length);
+    }
+
+    public boolean hasLevel(){
+        return level < levels.length;
     }
 
 
