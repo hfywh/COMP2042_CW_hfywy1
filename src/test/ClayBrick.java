@@ -32,7 +32,7 @@ public class ClayBrick extends Brick {
 
     @Override
     public Shape getBrick() {
-        return super.brickFace;
+        return super.getbrickFace();
     }
 
 

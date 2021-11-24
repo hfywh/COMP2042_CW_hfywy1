@@ -101,19 +101,19 @@ public class Wall {
             switch (b.findImpact(ball)) {
                 case Brick.UP_IMPACT -> {
                     ball.reverseY();
-                    return b.setImpact(ball.getDown(), Brick.Crack.UP);
+                    return b.setImpact(ball.getDown(), Crack.UP);
                 }
                 case Brick.DOWN_IMPACT -> {
                     ball.reverseY();
-                    return b.setImpact(ball.getUp(), Brick.Crack.DOWN);
+                    return b.setImpact(ball.getUp(), Crack.DOWN);
                 }
                 case Brick.LEFT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.getRight(), Brick.Crack.RIGHT);
+                    return b.setImpact(ball.getRight(), Crack.RIGHT);
                 }
                 case Brick.RIGHT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.getLeft(), Brick.Crack.LEFT);
+                    return b.setImpact(ball.getLeft(), Crack.LEFT);
                 }
             }
         }
