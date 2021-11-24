@@ -14,10 +14,10 @@ abstract public class Ball {
 
     private Point2D center;
 
-    public Point2D up;
-    public Point2D down;
-    public Point2D left;
-    public Point2D right;
+    private Point2D up;
+    private Point2D down;
+    private Point2D left;
+    private Point2D right;
 
     private Color border;
     private Color inner;
@@ -28,16 +28,16 @@ abstract public class Ball {
     public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
         this.center = center;
 
-        up = new Point2D.Double();
-        down = new Point2D.Double();
-        left = new Point2D.Double();
-        right = new Point2D.Double();
+        setUp();
+        setDown();
+        setLeft();
+        setRight();
 
-        up.setLocation(center.getX(),center.getY()-(radiusB / 2));
-        down.setLocation(center.getX(),center.getY()+(radiusB / 2));
+        setUpLocation(radiusB);
+        setDownLocation(radiusB);
 
-        left.setLocation(center.getX()-(radiusA /2),center.getY());
-        right.setLocation(center.getX()+(radiusA /2),center.getY());
+        setLeftLocation(radiusA);
+        setRightLocation(radiusA);
 
 
         ballFace = makeBall(center,radiusA,radiusB);
@@ -111,11 +111,11 @@ abstract public class Ball {
     }
 
     private void setPoints(double width,double height){
-        up.setLocation(center.getX(),center.getY()-(height / 2));
-        down.setLocation(center.getX(),center.getY()+(height / 2));
+        setUpLocation(height);
+        setDownLocation(height);
 
-        left.setLocation(center.getX()-(width / 2),center.getY());
-        right.setLocation(center.getX()+(width / 2),center.getY());
+        setLeftLocation(width);
+        setRightLocation(width);
     }
 
     public int getSpeedX(){
@@ -126,5 +126,51 @@ abstract public class Ball {
         return speedY;
     }
 
+    public void setUpLocation(double radiusB){
+        getUp().setLocation(center.getX(),center.getY()-(radiusB / 2));
+    }
 
+    public void setDownLocation(double radiusB){
+        getDown().setLocation(center.getX(),center.getY()+(radiusB / 2));
+    }
+
+    public void setLeftLocation(double radiusA){
+        getLeft().setLocation(center.getX()-(radiusA /2),center.getY());
+    }
+
+    public void setRightLocation(double radiusA){
+        getRight().setLocation(center.getX()+(radiusA /2),center.getY());
+    }
+
+    public void setUp(){
+        this.up = new Point2D.Double();
+    }
+
+    public Point2D getUp(){
+        return up;
+    }
+
+    public void setDown(){
+        this.down = new Point2D.Double();
+    }
+
+    public Point2D getDown(){
+        return down;
+    }
+
+    public void setLeft(){
+        this.left = new Point2D.Double();
+    }
+
+    public Point2D getLeft(){
+        return left;
+    }
+
+    public void setRight(){
+        this.right = new Point2D.Double();
+    }
+
+    public Point2D getRight(){
+        return right;
+    }
 }
