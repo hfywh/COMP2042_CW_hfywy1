@@ -27,9 +27,9 @@ public class Wall {
     private Random rnd;
     private Rectangle area;
 
-    Brick[] bricks;
-    Ball ball;
-    Player player;
+    private Brick[] bricks;
+    private Ball ball;
+    private Player player;
 
     private Point startPoint;
     private int brickCount;
@@ -191,4 +191,11 @@ public class Wall {
         return bricks;
     }
 
+    public Ball getBall(){
+        return ball;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }
