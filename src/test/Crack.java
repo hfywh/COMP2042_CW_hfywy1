@@ -106,7 +106,7 @@ public class Crack {
 
     private int randomInBounds(int bound){
         int n = (bound * 2) + 1;
-        return bricks.getRandom().nextInt(n) - bound;
+        return Brick.getRandom().nextInt(n) - bound;
     }
 
     private boolean inMiddle(int i,int steps,int divisions){
@@ -118,7 +118,7 @@ public class Crack {
 
     private int jumps(int bound,double probability){
 
-        if(bricks.getRandom().nextDouble() > probability)
+        if(Brick.getRandom().nextDouble() > probability)
             return randomInBounds(bound);
         return  0;
 
@@ -130,10 +130,10 @@ public class Crack {
         int pos;
 
         if (direction == HORIZONTAL) {
-            pos = bricks.getRandom().nextInt(to.x - from.x) + from.x;
+            pos = Brick.getRandom().nextInt(to.x - from.x) + from.x;
             out.setLocation(pos, to.y);
         } else if (direction == VERTICAL) {
-            pos = bricks.getRandom().nextInt(to.y - from.y) + from.y;
+            pos = Brick.getRandom().nextInt(to.y - from.y) + from.y;
             out.setLocation(to.x, pos);
         }
         return out;

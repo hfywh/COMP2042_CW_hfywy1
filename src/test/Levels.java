@@ -3,11 +3,12 @@ package test;
 import java.awt.*;
 
 public class Levels {
-    private static final int LEVELS_COUNT = 4;
+    private static final int LEVELS_COUNT = 5;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
+    private static final int STRONG = 5;
 
     private Brick[][] levels;
     private int level;
@@ -110,6 +111,7 @@ public class Levels {
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STRONG,CEMENT);
         return tmp;
     }
 
@@ -121,7 +123,9 @@ public class Levels {
             out = new SteelBrick(point, size);
         } else if (type == CEMENT) {
             out = new CementBrick(point, size);
-        } else {
+        } else if (type == STRONG) {
+            out = new StrongestBrick(point, size);
+        }else {
             throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         }
         return  out;

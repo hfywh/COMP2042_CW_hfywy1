@@ -54,7 +54,7 @@ public class Wall {
             speedY = -rnd.nextInt(3);
         }while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        getBall().setSpeed(speedX,speedY);
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
@@ -73,22 +73,22 @@ public class Wall {
     }
 
     public void findImpacts(){
-        if(player.impact(ball)){
-            ball.reverseY();
+        if(getPlayer().impact(getBall())){
+            getBall().reverseY();
         }
         else if(impactWall()){
             /*for efficiency reverse is done into method impactWall
             * because for every brick program checks for horizontal and vertical impacts
             */
-            brickCount--;
+            setBrickCount(getBrickCount() - 1);
         }
         else if(impactBorder()) {
-            ball.reverseX();
+            getBall().reverseX();
         }
-        else if(ball.getPosition().getY() < area.getY()){
-            ball.reverseY();
+        else if(getBall().getPosition().getY() < area.getY()){
+            getBall().reverseY();
         }
-        else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
+        else if(getBall().getPosition().getY() > area.getY() + area.getHeight()){
             ballCount--;
             ballLost = true;
         }
@@ -101,19 +101,19 @@ public class Wall {
             switch (b.findImpact(ball)) {
                 case Brick.UP_IMPACT -> {
                     ball.reverseY();
-                    return b.setImpact(ball.getDown(), Crack.UP);
+                    return b.setImpact(getBall().getDown(), Crack.UP);
                 }
                 case Brick.DOWN_IMPACT -> {
                     ball.reverseY();
-                    return b.setImpact(ball.getUp(), Crack.DOWN);
+                    return b.setImpact(getBall().getUp(), Crack.DOWN);
                 }
                 case Brick.LEFT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.getRight(), Crack.RIGHT);
+                    return b.setImpact(getBall().getRight(), Crack.RIGHT);
                 }
                 case Brick.RIGHT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.getLeft(), Crack.LEFT);
+                    return b.setImpact(getBall().getLeft(), Crack.LEFT);
                 }
             }
         }
