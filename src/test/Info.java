@@ -67,7 +67,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
         creditsFont = new Font("Monospaced",Font.PLAIN,10);
-        buttonFont = new Font("Monospaced",Font.PLAIN,40);
+        buttonFont = new Font("Monospaced",Font.PLAIN,30);
         infoFont = new Font("Monospaced",Font.PLAIN,15);
 
 
@@ -145,7 +145,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         int sX,sY;
 
         sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int)(menuFace.getHeight() / 5);
+        sY = (int)(menuFace.getHeight() / 8);
 
         g2d.setFont(greetingsFont);
         g2d.drawString(GREETINGS,sX,sY);
@@ -163,7 +163,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         g2d.drawString(CREDITS,sX,sY);
 
         sX = (int)(menuFace.getWidth() - gameDetail1Rect.getWidth()) / 2;
-        sY += (int) gameDetail1Rect.getHeight() * 1.1;
+        sY += (int) (menuFace.getHeight() / 10);
 
         g2d.setFont(infoFont);
         g2d.drawString(GAME_DETAILS1,sX,sY);
@@ -208,7 +208,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         g2d.setFont(buttonFont);
 
         int x = (menuFace.width - backButton.width) / 2;
-        int y =(int) ((menuFace.height - backButton.height) * 0.75);
+        int y =(int) ((menuFace.height - backButton.height) * 0.8);
 
         backButton.setLocation(x,y);
 
@@ -216,7 +216,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         y = (int)(backButton.getHeight() - backRect.getHeight()) / 2;
 
         x += backButton.x;
-        y += backButton.y + (backButton.height * 0.6);
+        y += backButton.y + (backButton.height * 0.8);
 
         if(backClicked){
             Color tmp = g2d.getColor();

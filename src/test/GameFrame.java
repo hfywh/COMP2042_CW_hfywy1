@@ -111,7 +111,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     public void enableInfo(){
-        info = new Info(this,new Dimension(800,600));
+        info = new Info(this,new Dimension(700,450));
         this.dispose();
         this.remove(homeMenu);
         this.add(info,BorderLayout.CENTER);
