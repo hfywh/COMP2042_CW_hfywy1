@@ -3,12 +3,13 @@ package test;
 import java.awt.*;
 
 public class Levels {
-    private static final int LEVELS_COUNT = 5;
+    private static final int LEVELS_COUNT = 6;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
     private static final int SUPER = 4;
+    private static final int SPEEDUP = 5;
 
     private Brick[][] levels;
     private int level;
@@ -107,11 +108,12 @@ public class Levels {
 
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
-        tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
+        tmp[5] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
         tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,SUPER,CEMENT);
+        tmp[0] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,SUPER,SPEEDUP);
         return tmp;
     }
 
@@ -125,6 +127,8 @@ public class Levels {
             out = new CementBrick(point, size);
         } else if (type == SUPER) {
             out = new SuperBrick(point, size);
+        } else if (type == SPEEDUP) {
+            out = new SpeedUpBrick(point, size);
         } else {
             throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         }

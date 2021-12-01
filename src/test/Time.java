@@ -28,14 +28,9 @@ public class Time {
     }
 
     public void resetGame(){
-        //setTempSeconds(0);
         setSeconds(0);
         setMinutes(0);
-        //setTempMinutes(0);
         setPlaying(false);
-    }
-    public int getTempSec(){
-        return tempSec;
     }
 
     public void setTempSec(int seconds){
