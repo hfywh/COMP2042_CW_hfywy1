@@ -19,12 +19,10 @@ package test;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.Random;
 
 
 public class Wall {
 
-    private Random rnd;
     private Rectangle area;
 
     private Brick[] bricks;
@@ -43,18 +41,9 @@ public class Wall {
         ballCount = 3;
         ballLost = false;
 
-        rnd = new Random();
-
         makeBall(ballPos);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
 
-        getBall().setSpeed(speedX,speedY);
+        getBall().setSpeed(3,-5);
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
@@ -140,15 +129,8 @@ public class Wall {
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        ball.setSpeed(3,-5);
         ballLost = false;
     }
 
