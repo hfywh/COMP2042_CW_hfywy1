@@ -44,7 +44,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Time time;
 
-    private Wall wall;
+    public static Wall wall;
 
     private String message;
     private String timeMessage;

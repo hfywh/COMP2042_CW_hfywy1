@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class SuperBrick extends Brick {
     private static final String NAME = "Super Brick";
-    private static final Color DEF_INNER = new Color(138, 229, 132);
-    private static final Color DEF_BORDER = new Color(22, 106, 50);
+    private static final Color DEF_INNER = new Color(105, 136, 227);
+    private static final Color DEF_BORDER = new Color(33, 81, 179);
     private static final int SUPER_STRENGTH = 2;
     private static final double SUPER_PROBABILITY = 0.4;
 

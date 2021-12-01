@@ -17,10 +17,14 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
     private static final String GAME_DETAILS1 = "Player need to destroy all the bricks without running out of balls.";
     private static final String GAME_DETAILS2 = "This game consist of 5 levels. Level 1 with all clay bricks.";
     private static final String GAME_DETAILS3 = "Level 2 with clay and cement bricks. Level 3 with clay and steel bricks.";
-    private static final String GAME_DETAILS4 = "Level 4 with cement and super bricks. Each level will be given 3 balls.";
+    private static final String GAME_DETAILS4 = "Level 4 with cement and steel bricks. Level 5 with cement and super bricks.";
+    private static final String GAME_DETAILS5 = "Level 6 with speed up and super bricks. Each level will be given 3 balls.";
     private static final String BRICK_DETAILS1 = "Clay brick can withstand 1 impact. Cement brick can withstand 2 impacts.";
     private static final String BRICK_DETAILS2 = "Steel brick can withstand 1 impact but only have 0.4 to receive an impact.";
     private static final String BRICK_DETAILS3 = "Super brick can withstand 2 impact but only have 0.4 to receive an impact.";
+    private static final String BRICK_DETAILS4 = "Speed Up brick can withstand 1 impact but will double the ball speed";
+    private static final String BRICK_DETAILS5 = "once it is broke. The effect will not be superimpose and";
+    private static final String BRICK_DETAILS6 = "have effect on current ball only.";
     private static final String BACK_TEXT = "Back";
 
     private static final Color BG_COLOR = Color.GRAY.darker();
@@ -138,9 +142,13 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         Rectangle2D gameDetail2Rect = infoFont.getStringBounds(GAME_DETAILS2,frc);
         Rectangle2D gameDetail3Rect = infoFont.getStringBounds(GAME_DETAILS3,frc);
         Rectangle2D gameDetail4Rect = infoFont.getStringBounds(GAME_DETAILS4,frc);
+        Rectangle2D gameDetail5Rect = infoFont.getStringBounds(GAME_DETAILS5,frc);
         Rectangle2D brickDetail1Rect = infoFont.getStringBounds(BRICK_DETAILS1,frc);
         Rectangle2D brickDetail2Rect = infoFont.getStringBounds(BRICK_DETAILS2,frc);
         Rectangle2D brickDetail3Rect = infoFont.getStringBounds(BRICK_DETAILS3,frc);
+        Rectangle2D brickDetail4Rect = infoFont.getStringBounds(BRICK_DETAILS4,frc);
+        Rectangle2D brickDetail5Rect = infoFont.getStringBounds(BRICK_DETAILS5,frc);
+        Rectangle2D brickDetail6Rect = infoFont.getStringBounds(BRICK_DETAILS6,frc);
 
         int sX,sY;
 
@@ -183,6 +191,11 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
 
         g2d.drawString(GAME_DETAILS4,sX,sY);
 
+        sX = (int)(menuFace.getWidth() - gameDetail5Rect.getWidth()) / 2;
+        sY += (int) gameDetail5Rect.getHeight() * 1.1;
+
+        g2d.drawString(GAME_DETAILS5,sX,sY);
+
         sX = (int)(menuFace.getWidth() - brickDetail1Rect.getWidth()) / 2;
         sY += (int) brickDetail1Rect.getHeight() * 1.1;
 
@@ -197,6 +210,21 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         sY += (int) brickDetail3Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS3,sX,sY);
+
+        sX = (int)(menuFace.getWidth() - brickDetail4Rect.getWidth()) / 2;
+        sY += (int) brickDetail4Rect.getHeight() * 1.1;
+
+        g2d.drawString(BRICK_DETAILS4,sX,sY);
+
+        sX = (int)(menuFace.getWidth() - brickDetail5Rect.getWidth()) / 2;
+        sY += (int) brickDetail5Rect.getHeight() * 1.1;
+
+        g2d.drawString(BRICK_DETAILS5,sX,sY);
+
+        sX = (int)(menuFace.getWidth() - brickDetail6Rect.getWidth()) / 2;
+        sY += (int) brickDetail6Rect.getHeight() * 1.1;
+
+        g2d.drawString(BRICK_DETAILS6,sX,sY);
     }
 
     private void drawButton(Graphics2D g2d){
@@ -208,7 +236,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         g2d.setFont(buttonFont);
 
         int x = (menuFace.width - backButton.width) / 2;
-        int y =(int) ((menuFace.height - backButton.height) * 0.8);
+        int y =(int) ((menuFace.height - backButton.height) * 0.95);
 
         backButton.setLocation(x,y);
 
