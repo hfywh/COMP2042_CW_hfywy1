@@ -15,12 +15,12 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
     private static final String GAME_TITLE = "Info";
     private static final String CREDITS = "Version 1.2";
     private static final String GAME_DETAILS1 = "Player need to destroy all the bricks without running out of balls.";
-    private static final String GAME_DETAILS2 = "This game consist of 4 levels. Level 1 with all clay bricks.";
+    private static final String GAME_DETAILS2 = "This game consist of 5 levels. Level 1 with all clay bricks.";
     private static final String GAME_DETAILS3 = "Level 2 with clay and cement bricks. Level 3 with clay and steel bricks.";
     private static final String GAME_DETAILS4 = "Level 4 with cement and super bricks. Each level will be given 3 balls.";
     private static final String BRICK_DETAILS1 = "Clay brick can withstand 1 impact. Cement brick can withstand 2 impacts.";
     private static final String BRICK_DETAILS2 = "Steel brick can withstand 1 impact but only have 0.4 to receive an impact.";
-    private static final String BRICK_DETAILS3 = "Super brick can withstand 2 impact but only have 0.2 to receive an impact.";
+    private static final String BRICK_DETAILS3 = "Super brick can withstand 2 impact but only have 0.4 to receive an impact.";
     private static final String BACK_TEXT = "Back";
 
     private static final Color BG_COLOR = Color.GRAY.darker();
