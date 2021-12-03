@@ -12,7 +12,7 @@ public class Levels {
     private static final int SPEEDUP = 5;
 
     private Brick[][] levels;
-    private int level;
+    private static int level;
     private Wall wall;
 
     public Levels(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
@@ -144,6 +144,7 @@ public class Levels {
         return level < levels.length;
     }
 
-
-
+    public static int getLevel(){
+        return level;
+    }
 }

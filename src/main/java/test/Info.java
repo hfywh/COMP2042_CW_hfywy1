@@ -1,5 +1,6 @@
 package test;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -7,6 +8,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 
 public class Info extends JComponent implements MouseListener, MouseMotionListener {
@@ -28,14 +31,12 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
     private static final String BACK_TEXT = "Back";
 
     private static final Color BG_COLOR = Color.GRAY.darker();
-    private static final Color TEXT_COLOR = Color.GREEN;
+    private static final Color TEXT_COLOR = Color.WHITE;
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
 
     private Rectangle menuFace;
     private Rectangle backButton;
-
-    private BasicStroke borderStoke;
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -47,6 +48,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
 
     private boolean backClicked;
 
+    private BufferedImage infoBackground;
 
     public Info(GameFrame owner,Dimension area){
 
@@ -65,8 +67,6 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
 
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
         backButton = new Rectangle(btnDim);
-
-        borderStoke = new BasicStroke();
 
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
@@ -112,21 +112,13 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
     }
 
     private void drawContainer(Graphics2D g2d){
-        Color prev = g2d.getColor();
+        try {
+            infoBackground = ImageIO.read(getClass().getResource("/info.jpg"));
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
 
-        g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
-
-        Stroke tmp = g2d.getStroke();
-
-        g2d.draw(menuFace);
-
-        g2d.setStroke(borderStoke);
-        g2d.draw(menuFace);
-
-        g2d.setStroke(tmp);
-
-        g2d.setColor(prev);
+        g2d.drawImage(infoBackground, 0, 0, 700, 450, this);
     }
 
     private void drawText(Graphics2D g2d){
