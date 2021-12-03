@@ -24,6 +24,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
@@ -37,22 +40,15 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String HIGHSCORE_TEXT = "High Score";
 
     private static final Color BG_COLOR = Color.GREEN.darker();
-    private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
-    private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    private static final Color TEXT_COLOR = new Color(58, 102, 189);
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
-    private static final int BORDER_SIZE = 5;
-    private static final float[] DASHES = {12,6};
 
     private Rectangle exitFace;
     private Rectangle startButton;
     private Rectangle exitButton;
     private Rectangle infoButton;
     private Rectangle highScoreButton;
-
-    private BasicStroke borderStoke;
-    private BasicStroke borderStoke_noDashes;
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -87,9 +83,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         exitButton = new Rectangle(btnDim);
         infoButton = new Rectangle(btnDim);
         highScoreButton = new Rectangle(btnDim);
-
-        borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
-        borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
@@ -134,24 +127,14 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
     private void drawContainer(Graphics2D g2d){
-        Color prev = g2d.getColor();
+        BufferedImage homeMenuImage;
+        try {
+            homeMenuImage = ImageIO.read(getClass().getResource("/homeMenu.jpg"));
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+        g2d.drawImage(homeMenuImage, 0, 0, 600, 450, this);
 
-        g2d.setColor(BG_COLOR);
-        g2d.fill(exitFace);
-
-        Stroke tmp = g2d.getStroke();
-
-        g2d.setStroke(borderStoke_noDashes);
-        g2d.setColor(DASH_BORDER_COLOR);
-        g2d.draw(exitFace);
-
-        g2d.setStroke(borderStoke);
-        g2d.setColor(BORDER_COLOR);
-        g2d.draw(exitFace);
-
-        g2d.setStroke(tmp);
-
-        g2d.setColor(prev);
     }
 
     private void drawText(Graphics2D g2d){
@@ -320,6 +303,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         }
         else if(highScoreButton.contains(p)) {
             System.out.println("high score button");
+            owner.enableHighScore();
         }
     }
 
