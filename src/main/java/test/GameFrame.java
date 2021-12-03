@@ -19,10 +19,8 @@ package test;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 
 
 public class GameFrame extends JFrame implements WindowFocusListener {
@@ -32,6 +30,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
     private Info info;
+    private HighScore highScore;
 
     private boolean gaming;
 
@@ -45,6 +44,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameBoard = new GameBoard(this);
 
         homeMenu = new HomeMenu(this,new Dimension(600,450));
+
+        highScore = new HighScore(this,new Dimension(600,450));
 
         this.add(homeMenu,BorderLayout.CENTER);
 
@@ -124,6 +125,26 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void pauseMenutoHomeMenu(){
         this.dispose();
         this.remove(gameBoard);
+        this.add(homeMenu,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        /*to avoid problems with graphics focus controller is added here*/
+        this.addWindowFocusListener(this);
+    }
+
+    public void enableHighScore(){
+        this.dispose();
+        this.remove(homeMenu);
+        this.add(highScore,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        /*to avoid problems with graphics focus controller is added here*/
+        this.addWindowFocusListener(this);
+    }
+
+    public void highScoretoHomeMenu(){
+        this.dispose();
+        this.remove(highScore);
         this.add(homeMenu,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();

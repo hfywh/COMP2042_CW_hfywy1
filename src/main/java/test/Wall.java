@@ -33,6 +33,7 @@ public class Wall {
     private int brickCount;
     private int ballCount;
     private boolean ballLost;
+    private static int totalBrickDestroyed = 0;
 
     public Wall(Rectangle drawArea, Point ballPos){
 
@@ -50,6 +51,14 @@ public class Wall {
         area = drawArea;
 
 
+    }
+
+    public static int getTotalBrickDestroyed() {
+        return totalBrickDestroyed;
+    }
+
+    public static void setTotalBrickDestroyed(int totalBrickDestroyed) {
+        Wall.totalBrickDestroyed = totalBrickDestroyed;
     }
 
     private void makeBall(Point2D ballPos){
@@ -70,6 +79,7 @@ public class Wall {
             * because for every brick program checks for horizontal and vertical impacts
             */
             setBrickCount(getBrickCount() - 1);
+            setTotalBrickDestroyed(getTotalBrickDestroyed() + 1);
         }
         else if(impactBorder()) {
             getBall().reverseX();

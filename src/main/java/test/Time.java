@@ -5,8 +5,8 @@ import java.util.TimerTask;
 
 
 public class Time {
-    private int seconds;
-    private int minutes;
+    public static int seconds;
+    public static int minutes;
     private int tempSec;
     private int tempMin;
     private boolean playing = false;
@@ -37,7 +37,7 @@ public class Time {
         this.tempSec = seconds;
     }
 
-    public int getSeconds() {
+    public static int getSeconds() {
         return seconds;
     }
 
@@ -53,7 +53,7 @@ public class Time {
         this.playing = playing;
     }
 
-    public int getMinutes() {
+    public static int getMinutes() {
         return minutes;
     }
 
@@ -63,5 +63,13 @@ public class Time {
 
     public void setTempMin(int tempMinutes) {
         this.tempMin = tempMinutes;
+    }
+
+    public int getTempSec() {
+        return tempSec;
+    }
+
+    public int getTempMin() {
+        return tempMin;
     }
 }
