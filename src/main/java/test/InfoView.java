@@ -37,10 +37,6 @@ public class InfoView implements ImageObserver {
     private Font infoFont;
     private Font buttonFont;
 
-    //private Rectangle menuFace;
-    //private Rectangle backButton;
-    //private boolean backClicked;
-
     public InfoView(Graphics g){
 
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
