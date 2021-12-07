@@ -100,7 +100,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     time.setPlaying(false);
                     message = "Game over";
                     showPauseMenu = true;
-                    HighScore.sortingAfterGame();
+                    HighScore.sortScore();
                     Wall.setTotalBrickDestroyed(0);
                     time.resetGame();
                 }
@@ -125,7 +125,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     brickMessage = String.format("Score: %d", Wall.getTotalBrickDestroyed());
                     time.setPlaying(false);
                     gameTimer.stop();
-                    HighScore.sortingAfterGame();
+                    HighScore.sortScore();
                 }
             }
 
@@ -358,18 +358,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             message = "Restarting Game...";
             timeMessage = "";
             brickMessage = "";
-            //time.setSeconds(time.getTempSec());
-            //time.setMinutes(time.getTempMin());
-            //time.setMinutes(0);
-            //time.setSeconds(0);
             wall.ballReset();
             wall.wallReset();
             time.setSeconds(time.getTempSec());
             time.setMinutes(time.getTempMin());
             Wall.setTotalBrickDestroyed((Levels.getLevel() - 1) * wall.getBrickCount());
-            //Wall.setTotalBrickDestroyed(0);
-            //time.setSeconds(time.getTempSec());
-            //time.setMinutes(time.getTempMin());
             showPauseMenu = false;
             repaint();
         }

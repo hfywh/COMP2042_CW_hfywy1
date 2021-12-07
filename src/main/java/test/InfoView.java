@@ -1,18 +1,14 @@
 package test;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.IOException;
 
-
-public class Info extends JComponent implements MouseListener, MouseMotionListener {
+public class InfoView implements ImageObserver {
 
     private static final String GREETINGS = "Welcome to Brick Destroy";
     private static final String GAME_TITLE = "Info";
@@ -35,38 +31,13 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
 
-    private Rectangle menuFace;
-    private Rectangle backButton;
-
     private Font greetingsFont;
     private Font gameTitleFont;
     private Font creditsFont;
     private Font infoFont;
     private Font buttonFont;
 
-    private GameFrame owner;
-
-    private boolean backClicked;
-
-    private BufferedImage infoBackground;
-
-    public Info(GameFrame owner,Dimension area){
-
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
-
-        this.owner = owner;
-
-
-
-        menuFace = new Rectangle(new Point(0,0),area);
-        this.setPreferredSize(area);
-
-        Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
-        backButton = new Rectangle(btnDim);
+    public InfoView(Graphics g){
 
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
@@ -75,9 +46,8 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         infoFont = new Font("Monospaced",Font.PLAIN,15);
 
 
-
+        paint(g);
     }
-
 
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
@@ -96,8 +66,8 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
         Color prevColor = g2d.getColor();
         Font prevFont = g2d.getFont();
 
-        double x = menuFace.getX();
-        double y = menuFace.getY();
+        double x = InfoModel.menuFace.getX();
+        double y = InfoModel.menuFace.getY();
 
         g2d.translate(x,y);
 
@@ -112,6 +82,7 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
     }
 
     private void drawContainer(Graphics2D g2d){
+        BufferedImage infoBackground;
         try {
             infoBackground = ImageIO.read(getClass().getResource("/info.jpg"));
         } catch (IOException e){
@@ -144,76 +115,76 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
 
         int sX,sY;
 
-        sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int)(menuFace.getHeight() / 8);
+        sX = (int)(InfoModel.menuFace.getWidth() - greetingsRect.getWidth()) / 2;
+        sY = (int)(InfoModel.menuFace.getHeight() / 8);
 
         g2d.setFont(greetingsFont);
         g2d.drawString(GREETINGS,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
         sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
 
         g2d.setFont(gameTitleFont);
         g2d.drawString(GAME_TITLE,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - creditsRect.getWidth()) / 2;
         sY += (int) creditsRect.getHeight() * 1.1;
 
         g2d.setFont(creditsFont);
         g2d.drawString(CREDITS,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameDetail1Rect.getWidth()) / 2;
-        sY += (int) (menuFace.getHeight() / 10);
+        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail1Rect.getWidth()) / 2;
+        sY += (int) (InfoModel.menuFace.getHeight() / 10);
 
         g2d.setFont(infoFont);
         g2d.drawString(GAME_DETAILS1,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameDetail2Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail2Rect.getWidth()) / 2;
         sY += (int) gameDetail2Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS2,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameDetail3Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail3Rect.getWidth()) / 2;
         sY += (int) gameDetail3Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS3,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameDetail4Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail4Rect.getWidth()) / 2;
         sY += (int) gameDetail4Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS4,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameDetail5Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail5Rect.getWidth()) / 2;
         sY += (int) gameDetail5Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS5,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - brickDetail1Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail1Rect.getWidth()) / 2;
         sY += (int) brickDetail1Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS1,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - brickDetail2Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail2Rect.getWidth()) / 2;
         sY += (int) brickDetail2Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS2,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - brickDetail3Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail3Rect.getWidth()) / 2;
         sY += (int) brickDetail3Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS3,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - brickDetail4Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail4Rect.getWidth()) / 2;
         sY += (int) brickDetail4Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS4,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - brickDetail5Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail5Rect.getWidth()) / 2;
         sY += (int) brickDetail5Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS5,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - brickDetail6Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail6Rect.getWidth()) / 2;
         sY += (int) brickDetail6Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS6,sX,sY);
@@ -227,82 +198,35 @@ public class Info extends JComponent implements MouseListener, MouseMotionListen
 
         g2d.setFont(buttonFont);
 
-        int x = (menuFace.width - backButton.width) / 2;
-        int y =(int) ((menuFace.height - backButton.height) * 0.95);
+        int x = (InfoModel.menuFace.width - InfoModel.backButton.width) / 2;
+        int y =(int) ((InfoModel.menuFace.height - InfoModel.backButton.height) * 0.95);
 
-        backButton.setLocation(x,y);
+        InfoModel.backButton.setLocation(x,y);
 
-        x = (int)(backButton.getWidth() - backRect.getWidth()) / 2;
-        y = (int)(backButton.getHeight() - backRect.getHeight()) / 2;
+        x = (int)(InfoModel.backButton.getWidth() - backRect.getWidth()) / 2;
+        y = (int)(InfoModel.backButton.getHeight() - backRect.getHeight()) / 2;
 
-        x += backButton.x;
-        y += backButton.y + (backButton.height * 0.8);
+        x += InfoModel.backButton.x;
+        y += InfoModel.backButton.y + (InfoModel.backButton.height * 0.8);
 
-        if(backClicked){
+        if(InfoModel.backClicked){
             Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(backButton);
+            g2d.draw(InfoModel.backButton);
             g2d.setColor(CLICKED_TEXT);
             g2d.drawString(BACK_TEXT,x,y);
             g2d.setColor(tmp);
         }
         else{
-            g2d.draw(backButton);
+            g2d.draw(InfoModel.backButton);
             g2d.drawString(BACK_TEXT,x,y);
         }
 
     }
 
     @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(backButton.contains(p)){
-            owner.backtoHomeMenu();
-
-        }
+    public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+        return false;
     }
 
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(backButton.contains(p)){
-            backClicked = true;
-            repaint(backButton.x,backButton.y,backButton.width+1,backButton.height+1);
-        }
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-        if(backClicked ){
-            backClicked = false;
-            repaint(backButton.x,backButton.y,backButton.width+1,backButton.height+1);
-        }
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-
-    }
-
-
-    @Override
-    public void mouseDragged(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(backButton.contains(p))
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        else
-            this.setCursor(Cursor.getDefaultCursor());
-
-    }
 }
-
