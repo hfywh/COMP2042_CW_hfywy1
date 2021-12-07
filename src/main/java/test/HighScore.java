@@ -100,7 +100,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
-    public static void sortingAfterGame() {
+    public static void sortScore() {
         int[] temp;
         if (highScore[8][0] < Wall.getTotalBrickDestroyed()) {
             highScore[8][0] = Wall.getTotalBrickDestroyed();
