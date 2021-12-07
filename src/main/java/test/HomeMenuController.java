@@ -22,7 +22,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class HomeMenuController extends GameFrame implements MouseListener, MouseMotionListener{
+public class HomeMenuController implements MouseListener, MouseMotionListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         Point p = e.getPoint();
@@ -108,25 +108,25 @@ public class HomeMenuController extends GameFrame implements MouseListener, Mous
     public void mouseMoved(MouseEvent e) {
         Point p = e.getPoint();
         if(HomeMenuModel.getStartButton().contains(p) || HomeMenuModel.getExitButton().contains(p) || HomeMenuModel.getInfoButton().contains(p) || HomeMenuModel.getHighScoreButton().contains(p))
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            GameFrame.getHomeMenuModel().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
-            this.setCursor(Cursor.getDefaultCursor());
+            GameFrame.getHomeMenuModel().setCursor(Cursor.getDefaultCursor());
 
     }
 
     private void repaintStartBtn(){
-        repaint(HomeMenuModel.getStartButton().x,HomeMenuModel.getStartButton().y,HomeMenuModel.getStartButton().width+1,HomeMenuModel.getStartButton().height+1);
+        GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getStartButton().x,HomeMenuModel.getStartButton().y,HomeMenuModel.getStartButton().width+1,HomeMenuModel.getStartButton().height+1);
     }
 
     private void repaintExitBtn(){
-        repaint(HomeMenuModel.getExitButton().x,HomeMenuModel.getExitButton().y,HomeMenuModel.getExitButton().width+1,HomeMenuModel.getExitButton().height+1);
+        GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getExitButton().x,HomeMenuModel.getExitButton().y,HomeMenuModel.getExitButton().width+1,HomeMenuModel.getExitButton().height+1);
     }
 
     private void repaintInfoBtn(){
-        repaint(HomeMenuModel.getInfoButton().x, HomeMenuModel.getInfoButton().y, HomeMenuModel.getInfoButton().width + 1, HomeMenuModel.getInfoButton().height + 1);
+        GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getInfoButton().x, HomeMenuModel.getInfoButton().y, HomeMenuModel.getInfoButton().width + 1, HomeMenuModel.getInfoButton().height + 1);
     }
 
     private void repaintHighScoreBtn(){
-        repaint(HomeMenuModel.getHighScoreButton().x, HomeMenuModel.getHighScoreButton().y, HomeMenuModel.getHighScoreButton().width + 1, HomeMenuModel.getHighScoreButton().height + 1);
+        GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getHighScoreButton().x, HomeMenuModel.getHighScoreButton().y, HomeMenuModel.getHighScoreButton().width + 1, HomeMenuModel.getHighScoreButton().height + 1);
     }
 }

@@ -28,7 +28,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private static final String DEF_TITLE = "Brick Destroy";
 
     private GameBoard gameBoard;
-    private HomeMenu homeMenu;
+    private static HomeMenuModel homeMenuModel;
     private static InfoModel infoModel;
     private HighScore highScore;
 
@@ -43,13 +43,13 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         gameBoard = new GameBoard(this);
 
-        homeMenu = new HomeMenu(this,new Dimension(600,450));
+        setHomeMenuModel(new HomeMenuModel(this,new Dimension(600,450)));
 
         highScore = new HighScore(this,new Dimension(600,450));
 
         setInfoModel(new InfoModel(this,new Dimension(700,450)));
 
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(homeMenuModel,BorderLayout.CENTER);
 
         this.setUndecorated(true);
 
@@ -66,7 +66,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void enableGameBoard(){
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(homeMenuModel);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
@@ -106,7 +106,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void infotoHomeMenu(){
         this.dispose();
         this.remove(infoModel);
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(homeMenuModel,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
@@ -116,7 +116,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void enableInfo(){
         //infoModel = new InfoModel(this,new Dimension(700,450));
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(homeMenuModel);
         this.add(infoModel,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
@@ -127,7 +127,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void pauseMenutoHomeMenu(){
         this.dispose();
         this.remove(gameBoard);
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(homeMenuModel,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
@@ -136,7 +136,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void enableHighScore(){
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(homeMenuModel);
         this.add(highScore,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
@@ -147,18 +147,26 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void highScoretoHomeMenu(){
         this.dispose();
         this.remove(highScore);
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(homeMenuModel,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
     }
 
-    public void setInfoModel(InfoModel infoModel){
+    private void setInfoModel(InfoModel infoModel){
         GameFrame.infoModel = infoModel;
     }
 
     public static InfoModel getInfoModel(){
         return infoModel;
+    }
+
+    private void setHomeMenuModel(HomeMenuModel homeMenuModel){
+        GameFrame.homeMenuModel = homeMenuModel;
+    }
+
+    public static HomeMenuModel getHomeMenuModel(){
+        return homeMenuModel;
     }
 }
