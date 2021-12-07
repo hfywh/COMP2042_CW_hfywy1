@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class InfoController extends GameFrame implements MouseListener, MouseMotionListener {
+public class InfoController implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -21,7 +21,7 @@ public class InfoController extends GameFrame implements MouseListener, MouseMot
         Point p = mouseEvent.getPoint();
         if(InfoModel.backButton.contains(p)){
             InfoModel.backClicked = true;
-            repaint(InfoModel.backButton.x,InfoModel.backButton.y,InfoModel.backButton.width+1,InfoModel.backButton.height+1);
+            GameFrame.getInfoModel().repaint(InfoModel.backButton.x,InfoModel.backButton.y,InfoModel.backButton.width+1,InfoModel.backButton.height+1);
         }
     }
 
@@ -29,7 +29,7 @@ public class InfoController extends GameFrame implements MouseListener, MouseMot
     public void mouseReleased(MouseEvent mouseEvent) {
         if(InfoModel.backClicked ){
             InfoModel.backClicked = false;
-            repaint(InfoModel.backButton.x,InfoModel.backButton.y,InfoModel.backButton.width+1,InfoModel.backButton.height+1);
+            GameFrame.getInfoModel().repaint(InfoModel.backButton.x,InfoModel.backButton.y,InfoModel.backButton.width+1,InfoModel.backButton.height+1);
         }
     }
 
@@ -53,9 +53,9 @@ public class InfoController extends GameFrame implements MouseListener, MouseMot
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(InfoModel.backButton.contains(p))
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            GameFrame.getInfoModel().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
-            this.setCursor(Cursor.getDefaultCursor());
+            GameFrame.getInfoModel().setCursor(Cursor.getDefaultCursor());
 
     }
 

@@ -29,7 +29,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
-    private InfoModel infoModel;
+    private static InfoModel infoModel;
     private HighScore highScore;
 
     private boolean gaming;
@@ -46,6 +46,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         homeMenu = new HomeMenu(this,new Dimension(600,450));
 
         highScore = new HighScore(this,new Dimension(600,450));
+
+        setInfoModel(new InfoModel(this,new Dimension(700,450)));
 
         this.add(homeMenu,BorderLayout.CENTER);
 
@@ -112,7 +114,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     public void enableInfo(){
-        infoModel = new InfoModel(this,new Dimension(700,450));
+        //infoModel = new InfoModel(this,new Dimension(700,450));
         this.dispose();
         this.remove(homeMenu);
         this.add(infoModel,BorderLayout.CENTER);
@@ -150,5 +152,13 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
+    }
+
+    public void setInfoModel(InfoModel infoModel){
+        GameFrame.infoModel = infoModel;
+    }
+
+    public static InfoModel getInfoModel(){
+        return infoModel;
     }
 }
