@@ -24,7 +24,6 @@ import java.util.Random;
 
 public class SteelBrickModel extends BrickModel {
 
-    private static final String NAME = "Steel Brick";
     private static final Color DEF_INNER = new Color(203, 203, 201);
     private static final Color DEF_BORDER = Color.BLACK;
     private static final int STEEL_STRENGTH = 1;

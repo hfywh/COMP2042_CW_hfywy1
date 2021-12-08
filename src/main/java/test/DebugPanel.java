@@ -29,27 +29,20 @@ public class DebugPanel extends JPanel {
     private static final Color DEF_BKG = Color.WHITE;
 
 
-    private JButton skipLevel;
-    private JButton resetBalls;
-
     private JSlider ballXSpeed;
     private JSlider ballYSpeed;
-
-    private Wall wall;
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
     public DebugPanel(Wall wall){
 
-        this.wall = wall;
-
         initialize();
 
         Levels level = new Levels(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2, wall);
 
-        skipLevel = makeButton("Skip Level",e -> level.nextLevel());
-        resetBalls = makeButton("Reset Balls",e -> wall.resetBallCount());
+        JButton skipLevel = makeButton("Skip Level", e -> level.nextLevel());
+        JButton resetBalls = makeButton("Reset Balls", e -> wall.resetBallCount());
 
         ballXSpeed = makeSlider(-4,4,e -> wall.setBallXSpeed(ballXSpeed.getValue()));
         ballYSpeed = makeSlider(-4,4,e -> wall.setBallYSpeed(ballYSpeed.getValue()));

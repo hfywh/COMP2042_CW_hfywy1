@@ -42,7 +42,7 @@ public class Time {
     }
 
     public void setSeconds(int seconds) {
-        this.seconds = seconds;
+        Time.seconds = seconds;
     }
 
     private boolean getPlaying() {
@@ -58,7 +58,7 @@ public class Time {
     }
 
     public void setMinutes(int minutes) {
-        this.minutes = minutes;
+        Time.minutes = minutes;
     }
 
     public void setTempMin(int tempMinutes) {

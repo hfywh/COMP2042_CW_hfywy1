@@ -6,7 +6,6 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 public class SuperBrickModel extends BrickModel {
-    private static final String NAME = "Super Brick";
     private static final Color DEF_INNER = new Color(105, 136, 227);
     private static final Color DEF_BORDER = new Color(33, 81, 179);
     private static final int SUPER_STRENGTH = 2;

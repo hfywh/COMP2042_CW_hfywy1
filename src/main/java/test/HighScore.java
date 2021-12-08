@@ -20,8 +20,6 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private static final String TITLE = "High Score";
     private static final String BACK_TEXT = "Back";
 
-    private String highScoreText;
-
     private BasicStroke borderStoke;
 
     private Rectangle menuFace;
@@ -33,11 +31,9 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private Font textFont;
     private Font buttonFont;
 
-    private BufferedImage highScoreBackground;
-
     private boolean backBtnClicked;
 
-    private static int i, j;
+    private static int i;
     private static int[][] highScore;
 
     public HighScore(GameFrame owner, Dimension area){
@@ -72,6 +68,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
             File file = new File("src/main/resources/highscore.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()){
+                int j;
                 for (j = 0; j < 3; j++){
                     highScore[i][j] = scanner.nextInt();
                 }
@@ -172,6 +169,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     }
 
     private void drawContainer(Graphics2D g2d){
+        BufferedImage highScoreBackground;
         try {
             highScoreBackground = ImageIO.read(getClass().getResource("/highScore.jpg"));
         } catch (IOException e){
@@ -187,7 +185,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        highScoreText = String.format("#%02d %dBricks %dMinutes %dSeconds", i+1, highScore[i][0], highScore[i][1], highScore[i][2]);
+        String highScoreText = String.format("#%02d %dBricks %dMinutes %dSeconds", i + 1, highScore[i][0], highScore[i][1], highScore[i][2]);
 
         Rectangle2D titleRect = titleFont.getStringBounds(TITLE,frc);
         Rectangle2D scoreRect = textFont.getStringBounds(highScoreText,frc);

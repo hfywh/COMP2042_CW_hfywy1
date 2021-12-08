@@ -5,7 +5,6 @@ import java.awt.geom.Point2D;
 
 public class SpeedUpBrickModel extends BrickModel {
 
-    private static final String NAME = "Speed Up Brick";
     private static final Color DEF_INNER = Color.GREEN.brighter();
     private static final Color DEF_BORDER = Color.GREEN.darker();
     private static final int CLAY_STRENGTH = 1;
