@@ -1,4 +1,9 @@
-package test;
+package View;
+
+import Controller.PlayerController;
+import Model.BallModel;
+import Model.BrickModel;
+import Model.GameBoardModel;
 
 import javax.swing.*;
 import java.awt.*;

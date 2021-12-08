@@ -1,4 +1,7 @@
-package test;
+package Controller;
+
+import Model.GameBoardModel;
+import Model.Wall;
 
 import java.awt.*;
 import java.awt.event.*;

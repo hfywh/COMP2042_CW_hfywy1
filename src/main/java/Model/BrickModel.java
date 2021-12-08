@@ -1,4 +1,6 @@
-package test;
+package Model;
+
+import Model.BallModel;
 
 import java.awt.*;
 import java.awt.Point;

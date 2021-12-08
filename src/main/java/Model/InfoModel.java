@@ -1,4 +1,8 @@
-package test;
+package Model;
+
+import Controller.GameFrame;
+import Controller.InfoController;
+import View.InfoView;
 
 import javax.swing.*;
 import java.awt.*;

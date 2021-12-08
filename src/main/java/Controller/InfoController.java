@@ -1,4 +1,6 @@
-package test;
+package Controller;
+
+import Model.InfoModel;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

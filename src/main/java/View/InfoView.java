@@ -1,4 +1,6 @@
-package test;
+package View;
+
+import Model.InfoModel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

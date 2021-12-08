@@ -1,22 +1,26 @@
-package test;
+package Model;
+
+import Controller.Crack;
+import Model.BrickModel;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
+import java.util.Random;
 
+public class SuperBrickModel extends BrickModel {
+    private static final Color DEF_INNER = new Color(105, 136, 227);
+    private static final Color DEF_BORDER = new Color(33, 81, 179);
+    private static final int SUPER_STRENGTH = 2;
+    private static final double SUPER_PROBABILITY = 0.4;
 
-public class CementBrickModel extends BrickModel {
-
-
-    private static final Color DEF_INNER = new Color(147, 147, 147);
-    private static final Color DEF_BORDER = new Color(217, 199, 175);
-    private static final int CEMENT_STRENGTH = 2;
-
+    private Random rnd;
     private Crack crack;
     private Shape brickFace;
 
-    public CementBrickModel(Point point, Dimension size){
-        super(point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
+    public SuperBrickModel(Point point, Dimension size){
+        super(point,size,DEF_BORDER,DEF_INNER,SUPER_STRENGTH);
+        rnd = new Random();
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS, this);
         brickFace = super.getbrickFace();
     }
@@ -30,9 +34,8 @@ public class CementBrickModel extends BrickModel {
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
             return false;
-        super.impact();
+        impact(point, dir);
         if(!super.isBroken()){
-            crack.makeCrack(point,dir);
             updateBrick();
             return false;
         }
@@ -58,4 +61,12 @@ public class CementBrickModel extends BrickModel {
         crack.reset();
         brickFace = super.getbrickFace();
     }
+
+    public void impact(Point2D point, int dir){
+        if(rnd.nextDouble() < SUPER_PROBABILITY){
+            super.impact();
+            crack.makeCrack(point,dir);
+        }
+    }
+
 }

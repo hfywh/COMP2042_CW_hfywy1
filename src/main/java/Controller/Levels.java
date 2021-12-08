@@ -1,4 +1,12 @@
-package test;
+package Controller;
+
+import Model.BrickModel;
+import Model.CementBrickModel;
+import Model.ClayBrickModel;
+import Model.SpeedUpBrickModel;
+import Model.SteelBrickModel;
+import Model.SuperBrickModel;
+import Model.Wall;
 
 import java.awt.*;
 

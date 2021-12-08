@@ -1,4 +1,7 @@
-package test;
+package Controller;
+
+import Controller.GameFrame;
+import Model.HighScore;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

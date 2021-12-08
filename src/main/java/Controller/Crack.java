@@ -1,4 +1,6 @@
-package test;
+package Controller;
+
+import Model.BrickModel;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
@@ -42,7 +44,7 @@ public class Crack {
         crack.reset();
     }
 
-    protected void makeCrack(Point2D point, int direction){
+    public void makeCrack(Point2D point, int direction){
         Rectangle bounds = bricks.getbrickFace().getBounds();
 
         Point impact = new Point((int)point.getX(),(int)point.getY());
@@ -76,7 +78,7 @@ public class Crack {
         }
     }
 
-    protected void makeCrack(Point start, Point end){
+    public void makeCrack(Point start, Point end){
 
         GeneralPath path = new GeneralPath();
 

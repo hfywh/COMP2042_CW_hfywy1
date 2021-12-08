@@ -1,4 +1,7 @@
-package test;
+package Model;
+
+import Model.BrickModel;
+import Model.GameBoardModel;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

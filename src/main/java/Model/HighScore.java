@@ -1,4 +1,8 @@
-package test;
+package Model;
+
+import Controller.GameFrame;
+import Controller.HighScoreController;
+import Controller.Time;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
