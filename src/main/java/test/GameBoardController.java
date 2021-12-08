@@ -20,7 +20,7 @@ public class GameBoardController implements KeyListener, MouseListener, MouseMot
             case KeyEvent.VK_ESCAPE:
                 GameBoardModel.setShowPauseMenu(!GameBoardModel.isShowPauseMenu());
                 GameBoardModel.getTime().setPlaying(false);
-                GameFrame.getGameBoard().repaint();
+                GameFrame.getGameBoardModel().repaint();
                 GameBoardModel.getGameTimer().stop();
                 break;
             case KeyEvent.VK_SPACE:
@@ -53,7 +53,7 @@ public class GameBoardController implements KeyListener, MouseListener, MouseMot
             return;
         if(GameBoardModel.getContinueButtonRect().contains(p)){
             GameBoardModel.setShowPauseMenu(false);
-            GameFrame.getGameBoard().repaint();
+            GameFrame.getGameBoardModel().repaint();
         }
         else if(GameBoardModel.getRestartButtonRect().contains(p)){
             GameBoardModel.setMessage("Restarting Game...");
@@ -65,7 +65,7 @@ public class GameBoardController implements KeyListener, MouseListener, MouseMot
             GameBoardModel.getTime().setMinutes(GameBoardModel.getTime().getTempMin());
             Wall.setTotalBrickDestroyed((Levels.getLevel() - 1) * GameBoardModel.getWall().getBrickCount());
             GameBoardModel.setShowPauseMenu(false);
-            GameFrame.getGameBoard().repaint();
+            GameFrame.getGameBoardModel().repaint();
         }
         else if(GameBoardModel.getHomeMenuButtonRect().contains(p)){
             System.out.println("Home Menu Button");
@@ -110,12 +110,12 @@ public class GameBoardController implements KeyListener, MouseListener, MouseMot
         Point p = mouseEvent.getPoint();
         if(GameBoardModel.getExitButtonRect() != null && GameBoardModel.isShowPauseMenu()) {
             if (GameBoardModel.getExitButtonRect().contains(p) || GameBoardModel.getContinueButtonRect().contains(p) || GameBoardModel.getRestartButtonRect().contains(p) || GameBoardModel.getHomeMenuButtonRect().contains(p))
-                GameFrame.getGameBoard().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                GameFrame.getGameBoardModel().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             else
-                GameFrame.getGameBoard().setCursor(Cursor.getDefaultCursor());
+                GameFrame.getGameBoardModel().setCursor(Cursor.getDefaultCursor());
         }
         else{
-            GameFrame.getGameBoard().setCursor(Cursor.getDefaultCursor());
+            GameFrame.getGameBoardModel().setCursor(Cursor.getDefaultCursor());
         }
     }
 }

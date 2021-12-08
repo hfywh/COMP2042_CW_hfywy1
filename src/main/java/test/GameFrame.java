@@ -27,7 +27,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private static GameBoard gameBoard;
+    private static GameBoardModel gameBoardModel;
     private static HomeMenuModel homeMenuModel;
     private static InfoModel infoModel;
     private HighScore highScore;
@@ -41,7 +41,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         this.setLayout(new BorderLayout());
 
-        gameBoard = new GameBoard(this);
+        gameBoardModel = new GameBoardModel(this);
 
         setHomeMenuModel(new HomeMenuModel(this,new Dimension(600,450)));
 
@@ -67,7 +67,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenuModel);
-        this.add(gameBoard,BorderLayout.CENTER);
+        this.add(gameBoardModel,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
@@ -99,7 +99,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
-            gameBoard.onLostFocus();
+            gameBoardModel.onLostFocus();
 
     }
 
@@ -126,7 +126,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void pauseMenutoHomeMenu(){
         this.dispose();
-        this.remove(gameBoard);
+        this.remove(gameBoardModel);
         this.add(homeMenuModel,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
@@ -170,11 +170,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         return homeMenuModel;
     }
 
-    private void setGameBoard(GameBoard gameBoard){
-        GameFrame.gameBoard = gameBoard;
+    private void setGameBoardModel(GameBoardModel gameBoardModel){
+        GameFrame.gameBoardModel = gameBoardModel;
     }
 
-    public static GameBoard getGameBoard(){
-        return gameBoard;
+    public static GameBoardModel getGameBoardModel(){
+        return gameBoardModel;
     }
 }
