@@ -69,7 +69,7 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
 
 
 
-        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
+        setMenuFont(new Font("Monospaced",Font.PLAIN,TEXT_SIZE));
 
 
         this.initialize();
@@ -80,7 +80,7 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         Levels level = new Levels(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2, wall);
 
         time = new Time();
-        debugConsole = new DebugConsole(owner,wall,this);
+        setDebugConsole(new DebugConsole(owner,wall,this));
         //initialize the first level
         level.nextLevel();
 

@@ -22,11 +22,11 @@ public class InfoModel extends JComponent{
 
         setOwner(owner);
 
-        menuFace = new Rectangle(new Point(0,0),area);
+        setMenuFace(new Rectangle(new Point(0,0),area));
         this.setPreferredSize(area);
 
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
-        backButton = new Rectangle(btnDim);
+        setBackButton(new Rectangle(btnDim));
 
     }
 

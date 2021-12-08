@@ -45,7 +45,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         setHomeMenuModel(new HomeMenuModel(this,new Dimension(600,450)));
 
-        highScore = new HighScore(this,new Dimension(600,450));
+        setHighScore(new HighScore(this,new Dimension(600,450)));
 
         setInfoModel(new InfoModel(this,new Dimension(700,450)));
 
