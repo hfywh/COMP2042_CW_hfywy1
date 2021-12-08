@@ -30,7 +30,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private static GameBoardModel gameBoardModel;
     private static HomeMenuModel homeMenuModel;
     private static InfoModel infoModel;
-    private HighScore highScore;
+    private static HighScore highScore;
 
     private boolean gaming;
 
@@ -160,6 +160,14 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public static InfoModel getInfoModel(){
         return infoModel;
+    }
+
+    private void setHighScore(HighScore highScore){
+        GameFrame.highScore = highScore;
+    }
+
+    public static HighScore getHighScore(){
+        return highScore;
     }
 
     private void setHomeMenuModel(HomeMenuModel homeMenuModel){

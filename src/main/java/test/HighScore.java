@@ -3,9 +3,6 @@ package test;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -15,7 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class HighScore extends JComponent implements MouseListener, MouseMotionListener {
+public class HighScore extends JComponent {
 
     private static final String TITLE = "High Score";
     private static final String BACK_TEXT = "Back";
@@ -23,15 +20,15 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private BasicStroke borderStoke;
 
     private Rectangle menuFace;
-    private Rectangle backButton;
+    private static Rectangle backButton;
 
-    private GameFrame owner;
+    private static GameFrame owner;
 
     private Font titleFont;
     private Font textFont;
     private Font buttonFont;
 
-    private boolean backBtnClicked;
+    private static boolean backBtnClicked;
 
     private static int i;
     private static int[][] highScore;
@@ -40,16 +37,16 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         this.setFocusable(true);
         this.requestFocusInWindow();
 
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
+        this.addMouseListener(new HighScoreController());
+        this.addMouseMotionListener(new HighScoreController());
 
-        this.owner = owner;
+        setOwner(owner);
 
         menuFace = new Rectangle(new Point(0,0),area);
         this.setPreferredSize(area);
 
         Dimension btnDim = new Dimension(area.width / 3, area.height / 13);
-        backButton = new Rectangle(btnDim);
+        setBackButton(new Rectangle(btnDim));
 
         borderStoke = new BasicStroke(2);
 
@@ -135,6 +132,14 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
             }
         }
         writeFile();
+    }
+
+    public static GameFrame getOwner() {
+        return owner;
+    }
+
+    public static void setOwner(GameFrame owner) {
+        HighScore.owner = owner;
     }
 
     public void paint(Graphics g){
@@ -253,54 +258,19 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Point p = e.getPoint();
-        if(backButton.contains(p)){
-            owner.highScoretoHomeMenu();
-        }
+    public static Rectangle getBackButton() {
+        return backButton;
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        Point p = e.getPoint();
-        if(backButton.contains(p)) {
-            backBtnClicked = true;
-            repaint(backButton.x, backButton.y, backButton.width + 1, backButton.height + 1);
-
-        }
-
+    public static void setBackButton(Rectangle backButton) {
+        HighScore.backButton = backButton;
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        if(backBtnClicked){
-            backBtnClicked = false;
-            repaint(backButton.x,backButton.y,backButton.width+1,backButton.height+1);
-        }
+    public static Boolean isBackBtnClicked() {
+        return backBtnClicked;
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        Point p = e.getPoint();
-        if(backButton.contains(p))
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        else
-            this.setCursor(Cursor.getDefaultCursor());
+    public static void setBackBtnClicked(Boolean backBtnClicked) {
+        HighScore.backBtnClicked = backBtnClicked;
     }
 }

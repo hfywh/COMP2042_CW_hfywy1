@@ -34,20 +34,20 @@ public class InfoModel extends JComponent{
         return owner;
     }
 
-    public static Rectangle getMenuFace() {
-        return menuFace;
-    }
-
-    public static void setMenuFace(Rectangle menuFace) {
-        InfoModel.menuFace = menuFace;
-    }
-
     public static Rectangle getBackButton() {
         return backButton;
     }
 
     public static void setBackButton(Rectangle backButton) {
         InfoModel.backButton = backButton;
+    }
+
+    public static Rectangle getMenuFace() {
+        return menuFace;
+    }
+
+    public static void setMenuFace(Rectangle menuFace) {
+        InfoModel.menuFace = menuFace;
     }
 
     public void setOwner(GameFrame owner){
