@@ -93,8 +93,8 @@ public class Crack {
             x = (i * w) + start.x;
             y = (i * h) + start.y + randomInBounds(crackDepth);
 
-            if(inMiddle(i,CRACK_SECTIONS,steps))
-                y += jumps(crackDepth * 5,JUMP_PROBABILITY);
+            if(inMiddle(i, steps))
+                y += jumps(crackDepth * 5);
 
             path.lineTo(x,y);
 
@@ -109,16 +109,16 @@ public class Crack {
         return BrickModel.getRandom().nextInt(n) - bound;
     }
 
-    private boolean inMiddle(int i,int steps,int divisions){
-        int low = (steps / divisions);
+    private boolean inMiddle(int i, int divisions){
+        int low = (Crack.CRACK_SECTIONS / divisions);
         int up = low * (divisions - 1);
 
         return  (i > low) && (i < up);
     }
 
-    private int jumps(int bound,double probability){
+    private int jumps(int bound){
 
-        if(BrickModel.getRandom().nextDouble() > probability)
+        if(BrickModel.getRandom().nextDouble() > Crack.JUMP_PROBABILITY)
             return randomInBounds(bound);
         return  0;
 

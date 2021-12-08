@@ -89,7 +89,7 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
             wall.findImpacts();
             time.setPlaying(true);
             message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
-            timeMessage = String.format("Time: %02dm %02ds", time.getMinutes(), time.getSeconds());
+            timeMessage = String.format("Time: %02dm %02ds", Time.getMinutes(), Time.getSeconds());
             brickMessage = String.format("Score: %d", Wall.getTotalBrickDestroyed());
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
@@ -108,8 +108,8 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
             else if(wall.isDone()){
                 if(level.hasLevel()){
                     message = "Go to Next Level";
-                    time.setTempMin(time.getMinutes());
-                    time.setTempSec(time.getSeconds());
+                    time.setTempMin(Time.getMinutes());
+                    time.setTempSec(Time.getSeconds());
                     timeMessage = "";
                     gameTimer.stop();
                     wall.ballReset();
@@ -118,7 +118,7 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
                 }
                 else{
                     message = "ALL WALLS DESTROYED";
-                    timeMessage = String.format("Time taken: %02dm %02ds", time.getMinutes(), time.getSeconds());
+                    timeMessage = String.format("Time taken: %02dm %02ds", Time.getMinutes(), Time.getSeconds());
                     brickMessage = String.format("Score: %d", Wall.getTotalBrickDestroyed());
                     time.setPlaying(false);
                     gameTimer.stop();
