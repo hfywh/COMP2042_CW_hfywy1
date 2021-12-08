@@ -44,7 +44,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Time time;
 
-    public static Wall wall;
+    private static Wall wall;
 
     private String message;
     private String timeMessage;
@@ -423,5 +423,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         time.setPlaying(false);
         message = "Focus Lost";
         repaint();
+    }
+
+    public static Wall getWall(){
+        return wall;
     }
 }

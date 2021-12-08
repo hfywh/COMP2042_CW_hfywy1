@@ -30,7 +30,7 @@ public class SpeedUpBrick extends Brick{
             return false;
         else {
             impact();
-            GameBoard.wall.setBallYSpeed(-10);
+            GameBoard.getWall().setBallYSpeed(-10);
         }
         return super.isBroken();
     }

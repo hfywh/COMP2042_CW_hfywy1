@@ -27,7 +27,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private GameBoard gameBoard;
+    private static GameBoard gameBoard;
     private static HomeMenuModel homeMenuModel;
     private static InfoModel infoModel;
     private HighScore highScore;
@@ -168,5 +168,13 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public static HomeMenuModel getHomeMenuModel(){
         return homeMenuModel;
+    }
+
+    private void setGameBoard(GameBoard gameBoard){
+        GameFrame.gameBoard = gameBoard;
+    }
+
+    public static GameBoard getGameBoard(){
+        return gameBoard;
     }
 }
