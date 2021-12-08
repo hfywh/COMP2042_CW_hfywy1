@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class InfoModel extends JComponent{
 
-    public static Rectangle menuFace;
-    public static Rectangle backButton;
+    private static Rectangle menuFace;
+    private static Rectangle backButton;
 
     private static GameFrame owner;
 
@@ -32,6 +32,22 @@ public class InfoModel extends JComponent{
 
     public static GameFrame getOwner(){
         return owner;
+    }
+
+    public static Rectangle getMenuFace() {
+        return menuFace;
+    }
+
+    public static void setMenuFace(Rectangle menuFace) {
+        InfoModel.menuFace = menuFace;
+    }
+
+    public static Rectangle getBackButton() {
+        return backButton;
+    }
+
+    public static void setBackButton(Rectangle backButton) {
+        InfoModel.backButton = backButton;
     }
 
     public void setOwner(GameFrame owner){

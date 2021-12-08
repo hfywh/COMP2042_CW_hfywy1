@@ -5,7 +5,7 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-public class SuperBrick extends Brick {
+public class SuperBrickModel extends BrickModel {
     private static final String NAME = "Super Brick";
     private static final Color DEF_INNER = new Color(105, 136, 227);
     private static final Color DEF_BORDER = new Color(33, 81, 179);
@@ -16,8 +16,8 @@ public class SuperBrick extends Brick {
     private Crack crack;
     private Shape brickFace;
 
-    public SuperBrick(Point point, Dimension size){
-        super(NAME,point,size,DEF_BORDER,DEF_INNER,SUPER_STRENGTH);
+    public SuperBrickModel(Point point, Dimension size){
+        super(point,size,DEF_BORDER,DEF_INNER,SUPER_STRENGTH);
         rnd = new Random();
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS, this);
         brickFace = super.getbrickFace();

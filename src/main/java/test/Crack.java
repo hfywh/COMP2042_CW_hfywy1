@@ -15,7 +15,7 @@ public class Crack {
     private static final int VERTICAL = 100;
     private static final int HORIZONTAL = 200;
 
-    private final Brick bricks;
+    private final BrickModel bricks;
 
     private GeneralPath crack;
 
@@ -23,7 +23,7 @@ public class Crack {
     private int steps;
 
 
-    public Crack(int crackDepth, int steps, Brick bricks){
+    public Crack(int crackDepth, int steps, BrickModel bricks){
         this.bricks = bricks;
         crack = new GeneralPath();
         this.crackDepth = crackDepth;
@@ -106,7 +106,7 @@ public class Crack {
 
     private int randomInBounds(int bound){
         int n = (bound * 2) + 1;
-        return Brick.getRandom().nextInt(n) - bound;
+        return BrickModel.getRandom().nextInt(n) - bound;
     }
 
     private boolean inMiddle(int i,int steps,int divisions){
@@ -118,7 +118,7 @@ public class Crack {
 
     private int jumps(int bound,double probability){
 
-        if(Brick.getRandom().nextDouble() > probability)
+        if(BrickModel.getRandom().nextDouble() > probability)
             return randomInBounds(bound);
         return  0;
 
@@ -130,10 +130,10 @@ public class Crack {
         int pos;
 
         if (direction == HORIZONTAL) {
-            pos = Brick.getRandom().nextInt(to.x - from.x) + from.x;
+            pos = BrickModel.getRandom().nextInt(to.x - from.x) + from.x;
             out.setLocation(pos, to.y);
         } else if (direction == VERTICAL) {
-            pos = Brick.getRandom().nextInt(to.y - from.y) + from.y;
+            pos = BrickModel.getRandom().nextInt(to.y - from.y) + from.y;
             out.setLocation(to.x, pos);
         }
         return out;

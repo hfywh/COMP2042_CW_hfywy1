@@ -5,8 +5,8 @@ import java.util.TimerTask;
 
 
 public class Time {
-    public static int seconds;
-    public static int minutes;
+    private static int seconds;
+    private static int minutes;
     private int tempSec;
     private int tempMin;
     private boolean playing = false;

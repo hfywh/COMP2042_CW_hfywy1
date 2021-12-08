@@ -10,7 +10,7 @@ public class InfoController implements MouseListener, MouseMotionListener {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(InfoModel.backButton.contains(p)){
+        if(InfoModel.getBackButton().contains(p)){
             InfoModel.getOwner().infotoHomeMenu();
 
         }
@@ -19,9 +19,9 @@ public class InfoController implements MouseListener, MouseMotionListener {
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(InfoModel.backButton.contains(p)){
+        if(InfoModel.getBackButton().contains(p)){
             InfoModel.backClicked = true;
-            GameFrame.getInfoModel().repaint(InfoModel.backButton.x,InfoModel.backButton.y,InfoModel.backButton.width+1,InfoModel.backButton.height+1);
+            GameFrame.getInfoModel().repaint(InfoModel.getBackButton().x,InfoModel.getBackButton().y,InfoModel.getBackButton().width+1,InfoModel.getBackButton().height+1);
         }
     }
 
@@ -29,7 +29,7 @@ public class InfoController implements MouseListener, MouseMotionListener {
     public void mouseReleased(MouseEvent mouseEvent) {
         if(InfoModel.backClicked ){
             InfoModel.backClicked = false;
-            GameFrame.getInfoModel().repaint(InfoModel.backButton.x,InfoModel.backButton.y,InfoModel.backButton.width+1,InfoModel.backButton.height+1);
+            GameFrame.getInfoModel().repaint(InfoModel.getBackButton().x,InfoModel.getBackButton().y,InfoModel.getBackButton().width+1,InfoModel.getBackButton().height+1);
         }
     }
 
@@ -52,7 +52,7 @@ public class InfoController implements MouseListener, MouseMotionListener {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(InfoModel.backButton.contains(p))
+        if(InfoModel.getBackButton().contains(p))
             GameFrame.getInfoModel().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
             GameFrame.getInfoModel().setCursor(Cursor.getDefaultCursor());

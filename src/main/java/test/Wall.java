@@ -25,7 +25,7 @@ public class Wall {
 
     private Rectangle area;
 
-    private Brick[] bricks;
+    private BrickModel[] brickModels;
     private BallModel ballModel;
     private Player player;
 
@@ -94,23 +94,23 @@ public class Wall {
     }
 
     private boolean impactWall(){
-        for(Brick b : bricks){
+        for(BrickModel b : brickModels){
             //Vertical Impact
             //Horizontal Impact
             switch (b.findImpact(ballModel)) {
-                case Brick.UP_IMPACT -> {
+                case BrickModel.UP_IMPACT -> {
                     ballModel.reverseY();
                     return b.setImpact(getBall().getDown(), Crack.getUp());
                 }
-                case Brick.DOWN_IMPACT -> {
+                case BrickModel.DOWN_IMPACT -> {
                     ballModel.reverseY();
                     return b.setImpact(getBall().getUp(), Crack.getDown());
                 }
-                case Brick.LEFT_IMPACT -> {
+                case BrickModel.LEFT_IMPACT -> {
                     ballModel.reverseX();
                     return b.setImpact(getBall().getRight(), Crack.getRight());
                 }
-                case Brick.RIGHT_IMPACT -> {
+                case BrickModel.RIGHT_IMPACT -> {
                     ballModel.reverseX();
                     return b.setImpact(getBall().getLeft(), Crack.getLeft());
                 }
@@ -145,9 +145,9 @@ public class Wall {
     }
 
     public void wallReset(){
-        for(Brick b : bricks)
+        for(BrickModel b : brickModels)
             b.repair();
-        brickCount = bricks.length;
+        brickCount = brickModels.length;
         ballCount = 3;
     }
 
@@ -171,16 +171,16 @@ public class Wall {
         ballCount = 3;
     }
 
-    public void setBricks(Brick[] bricks) {
-        this.bricks = bricks;
+    public void setBricks(BrickModel[] brickModels) {
+        this.brickModels = brickModels;
     }
 
     public void setBrickCount(int brickCount){
         this.brickCount = brickCount;
     }
 
-    public Brick[] getBricks() {
-        return bricks;
+    public BrickModel[] getBricks() {
+        return brickModels;
     }
 
     public BallModel getBall(){

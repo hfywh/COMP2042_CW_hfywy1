@@ -18,15 +18,13 @@
 package test;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 
 public class Player {
 
 
-    public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
-    public static final Color INNER_COLOR = Color.GREEN;
+    private static final Color BORDER_COLOR = Color.GREEN.darker().darker();
+    private static final Color INNER_COLOR = Color.GREEN;
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
@@ -51,7 +49,7 @@ public class Player {
         return  new Rectangle(p,new Dimension(width,height));
     }
 
-    public boolean impact(Ball b){
+    public boolean impact(BallModel b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown()) ;
     }
 
@@ -82,5 +80,13 @@ public class Player {
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+    }
+
+    public static Color getBorderColor(){
+        return BORDER_COLOR;
+    }
+
+    public static Color getInnerColor(){
+        return INNER_COLOR;
     }
 }

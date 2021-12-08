@@ -26,7 +26,7 @@ public class GameBoardView extends JComponent {
 
         drawBall(GameBoardModel.getWall().getBall(),g2d);
 
-        for(Brick b : GameBoardModel.getWall().getBricks())
+        for(BrickModel b : GameBoardModel.getWall().getBricks())
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
@@ -45,28 +45,28 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
-    private void drawBrick(Brick brick,Graphics2D g2d){
+    private void drawBrick(BrickModel brickModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
-        g2d.setColor(brick.getInnerColor());
-        g2d.fill(brick.getBrick());
+        g2d.setColor(brickModel.getInnerColor());
+        g2d.fill(brickModel.getBrick());
 
-        g2d.setColor(brick.getBorderColor());
-        g2d.draw(brick.getBrick());
+        g2d.setColor(brickModel.getBorderColor());
+        g2d.draw(brickModel.getBrick());
 
 
         g2d.setColor(tmp);
     }
 
-    private void drawBall(Ball ball,Graphics2D g2d){
+    private void drawBall(BallModel ballModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
-        Shape s = ball.getBallFace();
+        Shape s = ballModel.getBallFace();
 
-        g2d.setColor(ball.getInnerColor());
+        g2d.setColor(ballModel.getInnerColor());
         g2d.fill(s);
 
-        g2d.setColor(ball.getBorderColor());
+        g2d.setColor(ballModel.getBorderColor());
         g2d.draw(s);
 
         g2d.setColor(tmp);
@@ -76,10 +76,10 @@ public class GameBoardView extends JComponent {
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
-        g2d.setColor(Player.INNER_COLOR);
+        g2d.setColor(Player.getInnerColor());
         g2d.fill(s);
 
-        g2d.setColor(Player.BORDER_COLOR);
+        g2d.setColor(Player.getBorderColor());
         g2d.draw(s);
 
         g2d.setColor(tmp);

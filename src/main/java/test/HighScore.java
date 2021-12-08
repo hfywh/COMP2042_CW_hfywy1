@@ -38,7 +38,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private boolean backBtnClicked;
 
     private static int i, j;
-    public static int[][] highScore;
+    private static int[][] highScore;
 
     public HighScore(GameFrame owner, Dimension area){
         this.setFocusable(true);

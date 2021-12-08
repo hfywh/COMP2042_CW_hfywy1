@@ -22,7 +22,7 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 
-public class SteelBrick extends Brick {
+public class SteelBrickModel extends BrickModel {
 
     private static final String NAME = "Steel Brick";
     private static final Color DEF_INNER = new Color(203, 203, 201);
@@ -33,8 +33,8 @@ public class SteelBrick extends Brick {
     private Random rnd;
     private Shape brickFace;
 
-    public SteelBrick(Point point, Dimension size){
-        super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
+    public SteelBrickModel(Point point, Dimension size){
+        super(point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
         brickFace = super.getbrickFace();
     }
