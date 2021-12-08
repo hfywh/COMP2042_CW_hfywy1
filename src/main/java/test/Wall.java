@@ -26,7 +26,7 @@ public class Wall {
     private Rectangle area;
 
     private Brick[] bricks;
-    private Ball ball;
+    private BallModel ballModel;
     private Player player;
 
     private Point startPoint;
@@ -62,12 +62,12 @@ public class Wall {
     }
 
     private void makeBall(Point2D ballPos){
-        ball = new RubberBall(ballPos);
+        ballModel = new RubberBall(ballPos);
     }
 
     public void move(){
         player.move();
-        ball.move();
+        ballModel.move();
     }
 
     public void findImpacts(){
@@ -97,22 +97,22 @@ public class Wall {
         for(Brick b : bricks){
             //Vertical Impact
             //Horizontal Impact
-            switch (b.findImpact(ball)) {
+            switch (b.findImpact(ballModel)) {
                 case Brick.UP_IMPACT -> {
-                    ball.reverseY();
-                    return b.setImpact(getBall().getDown(), Crack.UP);
+                    ballModel.reverseY();
+                    return b.setImpact(getBall().getDown(), Crack.getUp());
                 }
                 case Brick.DOWN_IMPACT -> {
-                    ball.reverseY();
-                    return b.setImpact(getBall().getUp(), Crack.DOWN);
+                    ballModel.reverseY();
+                    return b.setImpact(getBall().getUp(), Crack.getDown());
                 }
                 case Brick.LEFT_IMPACT -> {
-                    ball.reverseX();
-                    return b.setImpact(getBall().getRight(), Crack.RIGHT);
+                    ballModel.reverseX();
+                    return b.setImpact(getBall().getRight(), Crack.getRight());
                 }
                 case Brick.RIGHT_IMPACT -> {
-                    ball.reverseX();
-                    return b.setImpact(getBall().getLeft(), Crack.LEFT);
+                    ballModel.reverseX();
+                    return b.setImpact(getBall().getLeft(), Crack.getLeft());
                 }
             }
         }
@@ -120,7 +120,7 @@ public class Wall {
     }
 
     private boolean impactBorder(){
-        Point2D p = ball.getPosition();
+        Point2D p = ballModel.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
@@ -138,9 +138,9 @@ public class Wall {
 
     public void ballReset(){
         player.moveTo(startPoint);
-        ball.moveTo(startPoint);
+        ballModel.moveTo(startPoint);
 
-        ball.setSpeed(3,-5);
+        ballModel.setSpeed(3,-5);
         ballLost = false;
     }
 
@@ -160,11 +160,11 @@ public class Wall {
     }
 
     public void setBallXSpeed(int s){
-        ball.setXSpeed(s);
+        ballModel.setXSpeed(s);
     }
 
     public void setBallYSpeed(int s){
-        ball.setYSpeed(s);
+        ballModel.setYSpeed(s);
     }
 
     public void resetBallCount(){
@@ -183,8 +183,8 @@ public class Wall {
         return bricks;
     }
 
-    public Ball getBall(){
-        return ball;
+    public BallModel getBall(){
+        return ballModel;
     }
 
     public Player getPlayer() {

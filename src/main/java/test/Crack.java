@@ -8,12 +8,12 @@ public class Crack {
     private static final int CRACK_SECTIONS = 3;
     private static final double JUMP_PROBABILITY = 0.7;
 
-    public static final int LEFT = 10;
-    public static final int RIGHT = 20;
-    public static final int UP = 30;
-    public static final int DOWN = 40;
-    public static final int VERTICAL = 100;
-    public static final int HORIZONTAL = 200;
+    private static final int LEFT = 10;
+    private static final int RIGHT = 20;
+    private static final int UP = 30;
+    private static final int DOWN = 40;
+    private static final int VERTICAL = 100;
+    private static final int HORIZONTAL = 200;
 
     private final Brick bricks;
 
@@ -137,5 +137,21 @@ public class Crack {
             out.setLocation(to.x, pos);
         }
         return out;
+    }
+
+    public static int getLeft(){
+        return LEFT;
+    }
+
+    public static int getRight(){
+        return RIGHT;
+    }
+
+    public static int getDown(){
+        return DOWN;
+    }
+
+    public static int getUp(){
+        return UP;
     }
 }
