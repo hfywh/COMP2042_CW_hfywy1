@@ -20,7 +20,7 @@ package test;
 import java.awt.*;
 
 
-public class Player {
+public class PlayerController {
 
 
     private static final Color BORDER_COLOR = Color.GREEN.darker().darker();
@@ -35,7 +35,7 @@ public class Player {
     private int max;
 
 
-    public Player(Point ballPoint,int width,int height,Rectangle container) {
+    public PlayerController(Point ballPoint, int width, int height, Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);

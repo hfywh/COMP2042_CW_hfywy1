@@ -27,7 +27,7 @@ public class Wall {
 
     private BrickModel[] brickModels;
     private BallModel ballModel;
-    private Player player;
+    private PlayerController playerController;
 
     private Point startPoint;
     private int brickCount;
@@ -46,7 +46,7 @@ public class Wall {
 
         getBall().setSpeed(3,-5);
 
-        player = new Player((Point) ballPos.clone(),150,10, drawArea);
+        playerController = new PlayerController((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
 
@@ -66,7 +66,7 @@ public class Wall {
     }
 
     public void move(){
-        player.move();
+        playerController.move();
         ballModel.move();
     }
 
@@ -137,7 +137,7 @@ public class Wall {
     }
 
     public void ballReset(){
-        player.moveTo(startPoint);
+        playerController.moveTo(startPoint);
         ballModel.moveTo(startPoint);
 
         ballModel.setSpeed(3,-5);
@@ -187,7 +187,7 @@ public class Wall {
         return ballModel;
     }
 
-    public Player getPlayer() {
-        return player;
+    public PlayerController getPlayer() {
+        return playerController;
     }
 }

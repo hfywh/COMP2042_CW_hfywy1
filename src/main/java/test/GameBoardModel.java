@@ -202,14 +202,14 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         g2d.setColor(tmp);
     }
 
-    private void drawPlayer(Player p,Graphics2D g2d){
+    private void drawPlayer(PlayerController p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
-        g2d.setColor(Player.getInnerColor());
+        g2d.setColor(PlayerController.getInnerColor());
         g2d.fill(s);
 
-        g2d.setColor(Player.getBorderColor());
+        g2d.setColor(PlayerController.getBorderColor());
         g2d.draw(s);
 
         g2d.setColor(tmp);
