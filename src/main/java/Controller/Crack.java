@@ -1,4 +1,6 @@
-package test;
+package Controller;
+
+import Model.BrickModel;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
@@ -8,14 +10,14 @@ public class Crack {
     private static final int CRACK_SECTIONS = 3;
     private static final double JUMP_PROBABILITY = 0.7;
 
-    public static final int LEFT = 10;
-    public static final int RIGHT = 20;
-    public static final int UP = 30;
-    public static final int DOWN = 40;
-    public static final int VERTICAL = 100;
-    public static final int HORIZONTAL = 200;
+    private static final int LEFT = 10;
+    private static final int RIGHT = 20;
+    private static final int UP = 30;
+    private static final int DOWN = 40;
+    private static final int VERTICAL = 100;
+    private static final int HORIZONTAL = 200;
 
-    private final Brick bricks;
+    private final BrickModel bricks;
 
     private GeneralPath crack;
 
@@ -23,7 +25,7 @@ public class Crack {
     private int steps;
 
 
-    public Crack(int crackDepth, int steps, Brick bricks){
+    public Crack(int crackDepth, int steps, BrickModel bricks){
         this.bricks = bricks;
         crack = new GeneralPath();
         this.crackDepth = crackDepth;
@@ -42,7 +44,7 @@ public class Crack {
         crack.reset();
     }
 
-    protected void makeCrack(Point2D point, int direction){
+    public void makeCrack(Point2D point, int direction){
         Rectangle bounds = bricks.getbrickFace().getBounds();
 
         Point impact = new Point((int)point.getX(),(int)point.getY());
@@ -76,7 +78,7 @@ public class Crack {
         }
     }
 
-    protected void makeCrack(Point start, Point end){
+    public void makeCrack(Point start, Point end){
 
         GeneralPath path = new GeneralPath();
 
@@ -93,8 +95,8 @@ public class Crack {
             x = (i * w) + start.x;
             y = (i * h) + start.y + randomInBounds(crackDepth);
 
-            if(inMiddle(i,CRACK_SECTIONS,steps))
-                y += jumps(crackDepth * 5,JUMP_PROBABILITY);
+            if(inMiddle(i, steps))
+                y += jumps(crackDepth * 5);
 
             path.lineTo(x,y);
 
@@ -106,19 +108,19 @@ public class Crack {
 
     private int randomInBounds(int bound){
         int n = (bound * 2) + 1;
-        return Brick.getRandom().nextInt(n) - bound;
+        return BrickModel.getRandom().nextInt(n) - bound;
     }
 
-    private boolean inMiddle(int i,int steps,int divisions){
-        int low = (steps / divisions);
+    private boolean inMiddle(int i, int divisions){
+        int low = (Crack.CRACK_SECTIONS / divisions);
         int up = low * (divisions - 1);
 
         return  (i > low) && (i < up);
     }
 
-    private int jumps(int bound,double probability){
+    private int jumps(int bound){
 
-        if(Brick.getRandom().nextDouble() > probability)
+        if(BrickModel.getRandom().nextDouble() > Crack.JUMP_PROBABILITY)
             return randomInBounds(bound);
         return  0;
 
@@ -130,12 +132,28 @@ public class Crack {
         int pos;
 
         if (direction == HORIZONTAL) {
-            pos = Brick.getRandom().nextInt(to.x - from.x) + from.x;
+            pos = BrickModel.getRandom().nextInt(to.x - from.x) + from.x;
             out.setLocation(pos, to.y);
         } else if (direction == VERTICAL) {
-            pos = Brick.getRandom().nextInt(to.y - from.y) + from.y;
+            pos = BrickModel.getRandom().nextInt(to.y - from.y) + from.y;
             out.setLocation(to.x, pos);
         }
         return out;
+    }
+
+    public static int getLeft(){
+        return LEFT;
+    }
+
+    public static int getRight(){
+        return RIGHT;
+    }
+
+    public static int getDown(){
+        return DOWN;
+    }
+
+    public static int getUp(){
+        return UP;
     }
 }

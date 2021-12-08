@@ -15,17 +15,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package Model;
+
+import Controller.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
-
-
-public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
-
+public class GameBoardModel extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
     private static final String EXIT = "Exit";
@@ -40,31 +39,31 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private static final Color BG_COLOR = Color.WHITE;
 
-    private Timer gameTimer;
+    private static Timer gameTimer;
 
-    private Time time;
+    private static Time time;
 
     private static Wall wall;
 
-    private String message;
-    private String timeMessage;
-    private String brickMessage;
+    private static String message;
+    private static String timeMessage;
+    private static String brickMessage;
 
-    private boolean showPauseMenu;
+    private static boolean showPauseMenu;
 
-    private Font menuFont;
+    private static Font menuFont;
 
-    private Rectangle continueButtonRect;
-    private Rectangle exitButtonRect;
-    private Rectangle restartButtonRect;
-    private Rectangle homeMenuButtonRect;
-    private int strLen;
+    private static Rectangle continueButtonRect;
+    private static Rectangle exitButtonRect;
+    private static Rectangle restartButtonRect;
+    private static Rectangle homeMenuButtonRect;
+    private static int strLen;
 
-    private DebugConsole debugConsole;
+    private static DebugConsole debugConsole;
 
 
 
-    public GameBoard(JFrame owner){
+    public GameBoardModel(JFrame owner){
         super();
 
         strLen = 0;
@@ -72,7 +71,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 
 
-        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
+        setMenuFont(new Font("Monospaced",Font.PLAIN,TEXT_SIZE));
 
 
         this.initialize();
@@ -83,7 +82,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Levels level = new Levels(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2, wall);
 
         time = new Time();
-        debugConsole = new DebugConsole(owner,wall,this);
+        setDebugConsole(new DebugConsole(owner,wall,this));
         //initialize the first level
         level.nextLevel();
 
@@ -92,7 +91,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wall.findImpacts();
             time.setPlaying(true);
             message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
-            timeMessage = String.format("Time: %02dm %02ds", time.getMinutes(), time.getSeconds());
+            timeMessage = String.format("Time: %02dm %02ds", Time.getMinutes(), Time.getSeconds());
             brickMessage = String.format("Score: %d", Wall.getTotalBrickDestroyed());
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
@@ -111,8 +110,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             else if(wall.isDone()){
                 if(level.hasLevel()){
                     message = "Go to Next Level";
-                    time.setTempMin(time.getMinutes());
-                    time.setTempSec(time.getSeconds());
+                    time.setTempMin(Time.getMinutes());
+                    time.setTempSec(Time.getSeconds());
                     timeMessage = "";
                     gameTimer.stop();
                     wall.ballReset();
@@ -121,7 +120,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 }
                 else{
                     message = "ALL WALLS DESTROYED";
-                    timeMessage = String.format("Time taken: %02dm %02ds", time.getMinutes(), time.getSeconds());
+                    timeMessage = String.format("Time taken: %02dm %02ds", Time.getMinutes(), Time.getSeconds());
                     brickMessage = String.format("Score: %d", Wall.getTotalBrickDestroyed());
                     time.setPlaying(false);
                     gameTimer.stop();
@@ -159,7 +158,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         drawBall(wall.getBall(),g2d);
 
-        for(Brick b : wall.getBricks())
+        for(BrickModel b : wall.getBricks())
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
@@ -178,41 +177,41 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawBrick(Brick brick,Graphics2D g2d){
+    private void drawBrick(BrickModel brickModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
-        g2d.setColor(brick.getInnerColor());
-        g2d.fill(brick.getBrick());
+        g2d.setColor(brickModel.getInnerColor());
+        g2d.fill(brickModel.getBrick());
 
-        g2d.setColor(brick.getBorderColor());
-        g2d.draw(brick.getBrick());
+        g2d.setColor(brickModel.getBorderColor());
+        g2d.draw(brickModel.getBrick());
 
 
         g2d.setColor(tmp);
     }
 
-    private void drawBall(Ball ball,Graphics2D g2d){
+    private void drawBall(BallModel ballModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
-        Shape s = ball.getBallFace();
+        Shape s = ballModel.getBallFace();
 
-        g2d.setColor(ball.getInnerColor());
+        g2d.setColor(ballModel.getInnerColor());
         g2d.fill(s);
 
-        g2d.setColor(ball.getBorderColor());
+        g2d.setColor(ballModel.getBorderColor());
         g2d.draw(s);
 
         g2d.setColor(tmp);
     }
 
-    private void drawPlayer(Player p,Graphics2D g2d){
+    private void drawPlayer(PlayerController p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
-        g2d.setColor(Player.INNER_COLOR);
+        g2d.setColor(PlayerController.getInnerColor());
         g2d.fill(s);
 
-        g2d.setColor(Player.BORDER_COLOR);
+        g2d.setColor(PlayerController.getBorderColor());
         g2d.draw(s);
 
         g2d.setColor(tmp);
@@ -418,14 +417,138 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    public static String getMessage() {
+        return message;
+    }
+
+    public static void setMessage(String message) {
+        GameBoardModel.message = message;
+    }
+
+    public static String getTimeMessage() {
+        return timeMessage;
+    }
+
+    public static void setTimeMessage(String timeMessage) {
+        GameBoardModel.timeMessage = timeMessage;
+    }
+
+    public static String getBrickMessage() {
+        return brickMessage;
+    }
+
+    public static void setBrickMessage(String brickMessage) {
+        GameBoardModel.brickMessage = brickMessage;
+    }
+
+    public static boolean isShowPauseMenu() {
+        return showPauseMenu;
+    }
+
+    public static void setShowPauseMenu(boolean showPauseMenu) {
+        GameBoardModel.showPauseMenu = showPauseMenu;
+    }
+
+    public static Font getMenuFont() {
+        return menuFont;
+    }
+
+    public static void setMenuFont(Font menuFont) {
+        GameBoardModel.menuFont = menuFont;
+    }
+
+    public static int getStrLen() {
+        return strLen;
+    }
+
+    public static void setStrLen(int strLen) {
+        GameBoardModel.strLen = strLen;
+    }
+
+    public static Rectangle getContinueButtonRect() {
+        return continueButtonRect;
+    }
+
+    public static void setContinueButtonRect(Rectangle continueButtonRect) {
+        GameBoardModel.continueButtonRect = continueButtonRect;
+    }
+
+    public static Rectangle getRestartButtonRect() {
+        return restartButtonRect;
+    }
+
+    public static void setRestartButtonRect(Rectangle restartButtonRect) {
+        GameBoardModel.restartButtonRect = restartButtonRect;
+    }
+
+    public static Rectangle getHomeMenuButtonRect() {
+        return homeMenuButtonRect;
+    }
+
+    public static void setHomeMenuButtonRect(Rectangle homeMenuButtonRect) {
+        GameBoardModel.homeMenuButtonRect = homeMenuButtonRect;
+    }
+
+    public static Rectangle getExitButtonRect() {
+        return exitButtonRect;
+    }
+
+    public static void setExitButtonRect(Rectangle exitButtonRect) {
+        GameBoardModel.exitButtonRect = exitButtonRect;
+    }
+
+    public static DebugConsole getDebugConsole() {
+        return debugConsole;
+    }
+
+    public static void setDebugConsole(DebugConsole debugConsole) {
+        GameBoardModel.debugConsole = debugConsole;
+    }
+
+    public static Wall getWall(){
+        return wall;
+    }
+
+    public static Color getBackgroundColor(){
+        return BG_COLOR;
+    }
+
+    public static Color getMenuColor(){
+        return MENU_COLOR;
+    }
+
+    public static String getPause(){
+        return PAUSE;
+    }
+
+    public static String getContinue(){
+        return CONTINUE;
+    }
+
+    public static String getRestart(){
+        return RESTART;
+    }
+
+    public static String getHomeMenu(){
+        return HOMEMENU;
+    }
+
+    public static String getExit(){
+        return EXIT;
+    }
+
+    public static Time getTime(){
+        return time;
+    }
+
+    public static Timer getGameTimer(){
+        return gameTimer;
+    }
+
     public void onLostFocus(){
         gameTimer.stop();
         time.setPlaying(false);
         message = "Focus Lost";
         repaint();
-    }
-
-    public static Wall getWall(){
-        return wall;
     }
 }

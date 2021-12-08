@@ -1,17 +1,19 @@
-package test;
+package Model;
+
+import Model.BrickModel;
+import Model.GameBoardModel;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class SpeedUpBrick extends Brick{
+public class SpeedUpBrickModel extends BrickModel {
 
-    private static final String NAME = "Speed Up Brick";
     private static final Color DEF_INNER = Color.GREEN.brighter();
     private static final Color DEF_BORDER = Color.GREEN.darker();
     private static final int CLAY_STRENGTH = 1;
 
-    public SpeedUpBrick(Point point, Dimension size){
-        super(NAME,point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
+    public SpeedUpBrickModel(Point point, Dimension size){
+        super(point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
     }
 
     @Override
@@ -30,7 +32,7 @@ public class SpeedUpBrick extends Brick{
             return false;
         else {
             impact();
-            GameBoard.getWall().setBallYSpeed(-10);
+            GameBoardModel.getWall().setBallYSpeed(-10);
         }
         return super.isBroken();
     }

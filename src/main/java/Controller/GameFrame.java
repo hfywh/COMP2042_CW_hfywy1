@@ -15,7 +15,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package Controller;
+
+import Model.GameBoardModel;
+import Model.HighScore;
+import Model.HomeMenuModel;
+import Model.InfoModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,10 +32,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private static GameBoard gameBoard;
+    private static GameBoardModel gameBoardModel;
     private static HomeMenuModel homeMenuModel;
     private static InfoModel infoModel;
-    private HighScore highScore;
+    private static HighScore highScore;
 
     private boolean gaming;
 
@@ -41,11 +46,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         this.setLayout(new BorderLayout());
 
-        gameBoard = new GameBoard(this);
+        setGameBoardModel(new GameBoardModel(this));
 
         setHomeMenuModel(new HomeMenuModel(this,new Dimension(600,450)));
 
-        highScore = new HighScore(this,new Dimension(600,450));
+        setHighScore(new HighScore(this,new Dimension(600,450)));
 
         setInfoModel(new InfoModel(this,new Dimension(700,450)));
 
@@ -67,7 +72,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenuModel);
-        this.add(gameBoard,BorderLayout.CENTER);
+        this.add(gameBoardModel,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
@@ -99,7 +104,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
-            gameBoard.onLostFocus();
+            gameBoardModel.onLostFocus();
 
     }
 
@@ -126,7 +131,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void pauseMenutoHomeMenu(){
         this.dispose();
-        this.remove(gameBoard);
+        this.remove(gameBoardModel);
         this.add(homeMenuModel,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
@@ -162,6 +167,14 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         return infoModel;
     }
 
+    private void setHighScore(HighScore highScore){
+        GameFrame.highScore = highScore;
+    }
+
+    public static HighScore getHighScore(){
+        return highScore;
+    }
+
     private void setHomeMenuModel(HomeMenuModel homeMenuModel){
         GameFrame.homeMenuModel = homeMenuModel;
     }
@@ -170,11 +183,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         return homeMenuModel;
     }
 
-    private void setGameBoard(GameBoard gameBoard){
-        GameFrame.gameBoard = gameBoard;
+    private void setGameBoardModel(GameBoardModel gameBoardModel){
+        GameFrame.gameBoardModel = gameBoardModel;
     }
 
-    public static GameBoard getGameBoard(){
-        return gameBoard;
+    public static GameBoardModel getGameBoardModel(){
+        return gameBoardModel;
     }
 }

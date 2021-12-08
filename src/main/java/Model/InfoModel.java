@@ -1,12 +1,16 @@
-package test;
+package Model;
+
+import Controller.GameFrame;
+import Controller.InfoController;
+import View.InfoView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class InfoModel extends JComponent{
 
-    public static Rectangle menuFace;
-    public static Rectangle backButton;
+    private static Rectangle menuFace;
+    private static Rectangle backButton;
 
     private static GameFrame owner;
 
@@ -22,16 +26,32 @@ public class InfoModel extends JComponent{
 
         setOwner(owner);
 
-        menuFace = new Rectangle(new Point(0,0),area);
+        setMenuFace(new Rectangle(new Point(0,0),area));
         this.setPreferredSize(area);
 
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
-        backButton = new Rectangle(btnDim);
+        setBackButton(new Rectangle(btnDim));
 
     }
 
     public static GameFrame getOwner(){
         return owner;
+    }
+
+    public static Rectangle getBackButton() {
+        return backButton;
+    }
+
+    public static void setBackButton(Rectangle backButton) {
+        InfoModel.backButton = backButton;
+    }
+
+    public static Rectangle getMenuFace() {
+        return menuFace;
+    }
+
+    public static void setMenuFace(Rectangle menuFace) {
+        InfoModel.menuFace = menuFace;
     }
 
     public void setOwner(GameFrame owner){

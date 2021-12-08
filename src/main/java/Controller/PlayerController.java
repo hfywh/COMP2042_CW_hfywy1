@@ -15,18 +15,18 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package Controller;
+
+import Model.BallModel;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 
-public class Player {
+public class PlayerController {
 
 
-    public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
-    public static final Color INNER_COLOR = Color.GREEN;
+    private static final Color BORDER_COLOR = Color.GREEN.darker().darker();
+    private static final Color INNER_COLOR = Color.GREEN;
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
@@ -37,7 +37,7 @@ public class Player {
     private int max;
 
 
-    public Player(Point ballPoint,int width,int height,Rectangle container) {
+    public PlayerController(Point ballPoint, int width, int height, Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);
@@ -51,7 +51,7 @@ public class Player {
         return  new Rectangle(p,new Dimension(width,height));
     }
 
-    public boolean impact(Ball b){
+    public boolean impact(BallModel b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown()) ;
     }
 
@@ -82,5 +82,13 @@ public class Player {
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+    }
+
+    public static Color getBorderColor(){
+        return BORDER_COLOR;
+    }
+
+    public static Color getInnerColor(){
+        return INNER_COLOR;
     }
 }

@@ -1,4 +1,12 @@
-package test;
+package Controller;
+
+import Model.BrickModel;
+import Model.CementBrickModel;
+import Model.ClayBrickModel;
+import Model.SpeedUpBrickModel;
+import Model.SteelBrickModel;
+import Model.SuperBrickModel;
+import Model.Wall;
 
 import java.awt.*;
 
@@ -11,7 +19,7 @@ public class Levels {
     private static final int SUPER = 4;
     private static final int SPEEDUP = 5;
 
-    private Brick[][] levels;
+    private BrickModel[][] levels;
     private static int level;
     private Wall wall;
 
@@ -21,7 +29,7 @@ public class Levels {
         this.wall = wall;
     }
 
-    private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
+    private BrickModel[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
           multiple of lineCount smaller then brickCount
@@ -35,7 +43,7 @@ public class Levels {
 
         brickCnt += lineCnt / 2;
 
-        Brick[] tmp  = new Brick[brickCnt];
+        BrickModel[] tmp  = new BrickModel[brickCnt];
 
         Dimension brickSize = new Dimension((int) brickLen,(int) brickHgt);
         Point p = new Point();
@@ -49,19 +57,19 @@ public class Levels {
             x =(line % 2 == 0) ? x : (x - (brickLen / 2));
             double y = (line) * brickHgt;
             p.setLocation(x,y);
-            tmp[i] = makeBrick(p,brickSize,type);
+            tmp[i] = makeBrick(p,brickSize, Levels.CLAY);
         }
 
         for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
-            tmp[i] = new ClayBrick(p,brickSize);
+            tmp[i] = new ClayBrickModel(p,brickSize);
         }
         return tmp;
 
     }
 
-    private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
+    private BrickModel[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
           multiple of lineCount smaller then brickCount
@@ -78,7 +86,7 @@ public class Levels {
 
         brickCnt += lineCnt / 2;
 
-        Brick[] tmp  = new Brick[brickCnt];
+        BrickModel[] tmp  = new BrickModel[brickCnt];
 
         Dimension brickSize = new Dimension((int) brickLen,(int) brickHgt);
         Point p = new Point();
@@ -106,9 +114,9 @@ public class Levels {
         return tmp;
     }
 
-    private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
-        Brick[][] tmp = new Brick[LEVELS_COUNT][];
-        tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
+    private BrickModel[][] makeLevels(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio){
+        BrickModel[][] tmp = new BrickModel[LEVELS_COUNT][];
+        tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio);
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
@@ -117,18 +125,18 @@ public class Levels {
         return tmp;
     }
 
-    private Brick makeBrick(Point point, Dimension size, int type){
-        Brick out;
+    private BrickModel makeBrick(Point point, Dimension size, int type){
+        BrickModel out;
         if (type == CLAY) {
-            out = new ClayBrick(point, size);
+            out = new ClayBrickModel(point, size);
         } else if (type == STEEL) {
-            out = new SteelBrick(point, size);
+            out = new SteelBrickModel(point, size);
         } else if (type == CEMENT) {
-            out = new CementBrick(point, size);
+            out = new CementBrickModel(point, size);
         } else if (type == SUPER) {
-            out = new SuperBrick(point, size);
+            out = new SuperBrickModel(point, size);
         } else if (type == SPEEDUP) {
-            out = new SpeedUpBrick(point, size);
+            out = new SpeedUpBrickModel(point, size);
         } else {
             throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         }

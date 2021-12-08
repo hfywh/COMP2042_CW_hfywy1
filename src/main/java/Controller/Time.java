@@ -1,12 +1,12 @@
-package test;
+package Controller;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class Time {
-    public static int seconds;
-    public static int minutes;
+    private static int seconds;
+    private static int minutes;
     private int tempSec;
     private int tempMin;
     private boolean playing = false;
@@ -42,7 +42,7 @@ public class Time {
     }
 
     public void setSeconds(int seconds) {
-        this.seconds = seconds;
+        Time.seconds = seconds;
     }
 
     private boolean getPlaying() {
@@ -58,7 +58,7 @@ public class Time {
     }
 
     public void setMinutes(int minutes) {
-        this.minutes = minutes;
+        Time.minutes = minutes;
     }
 
     public void setTempMin(int tempMinutes) {

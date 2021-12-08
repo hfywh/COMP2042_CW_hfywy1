@@ -1,4 +1,6 @@
-package test;
+package Model;
+
+import Model.BallModel;
 
 import java.awt.*;
 import java.awt.Point;
@@ -9,9 +11,8 @@ import java.util.Random;
  * Created by filippo on 04/09/16.
  *
  */
-abstract public class Brick  {
+abstract public class BrickModel {
 
-    public static final int MIN_CRACK = 1;
     public static final int DEF_CRACK_DEPTH = 1;
     public static final int DEF_STEPS = 35;
 
@@ -23,7 +24,6 @@ abstract public class Brick  {
 
     private static Random rnd;
 
-    private String name;
     private Shape brickFace;
 
     private Color border;
@@ -35,10 +35,9 @@ abstract public class Brick  {
     private boolean broken;
 
 
-    public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
+    public BrickModel(Point pos, Dimension size, Color border, Color inner, int strength){
         rnd = new Random();
         broken = false;
-        this.name = name;
         brickFace = makeBrickFace(pos,size);
         this.border = border;
         this.inner = inner;
@@ -68,7 +67,7 @@ abstract public class Brick  {
     }
 
 
-    public final int findImpact(Ball b){
+    public final int findImpact(BallModel b){
         if(broken)
             return 0;
         int out  = 0;

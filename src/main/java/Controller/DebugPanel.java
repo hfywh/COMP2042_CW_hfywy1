@@ -15,7 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package Controller;
+
+import Model.Wall;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
@@ -29,30 +31,23 @@ public class DebugPanel extends JPanel {
     private static final Color DEF_BKG = Color.WHITE;
 
 
-    private JButton skipLevel;
-    private JButton resetBalls;
-
     private JSlider ballXSpeed;
     private JSlider ballYSpeed;
-
-    private Wall wall;
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
     public DebugPanel(Wall wall){
 
-        this.wall = wall;
-
         initialize();
 
         Levels level = new Levels(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2, wall);
 
-        skipLevel = makeButton("Skip Level",e -> level.nextLevel());
-        resetBalls = makeButton("Reset Balls",e -> wall.resetBallCount());
+        JButton skipLevel = makeButton("Skip Level", e -> level.nextLevel());
+        JButton resetBalls = makeButton("Reset Balls", e -> wall.resetBallCount());
 
-        ballXSpeed = makeSlider(-4,4,e -> wall.setBallXSpeed(ballXSpeed.getValue()));
-        ballYSpeed = makeSlider(-4,4,e -> wall.setBallYSpeed(ballYSpeed.getValue()));
+        ballXSpeed = makeSlider(e -> wall.setBallXSpeed(ballXSpeed.getValue()));
+        ballYSpeed = makeSlider(e -> wall.setBallYSpeed(ballYSpeed.getValue()));
 
         this.add(skipLevel);
         this.add(resetBalls);
@@ -73,8 +68,8 @@ public class DebugPanel extends JPanel {
         return  out;
     }
 
-    private JSlider makeSlider(int min, int max, ChangeListener e){
-        JSlider out = new JSlider(min,max);
+    private JSlider makeSlider(ChangeListener e){
+        JSlider out = new JSlider(-4, 4);
         out.setMajorTickSpacing(1);
         out.setSnapToTicks(true);
         out.setPaintTicks(true);

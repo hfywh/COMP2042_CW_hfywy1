@@ -15,7 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package Controller;
+
+import Model.BallModel;
+import Model.GameBoardModel;
+import Model.Wall;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,11 +33,11 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     private JFrame owner;
     private DebugPanel debugPanel;
-    private GameBoard gameBoard;
+    private GameBoardModel gameBoard;
     private Wall wall;
 
 
-    public DebugConsole(JFrame owner, Wall wall, GameBoard gameBoard){
+    public DebugConsole(JFrame owner, Wall wall, GameBoardModel gameBoard){
 
         this.wall = wall;
         this.owner = owner;
@@ -92,7 +96,7 @@ public class DebugConsole extends JDialog implements WindowListener{
     @Override
     public void windowActivated(WindowEvent windowEvent) {
         setLocation();
-        Ball b = wall.getBall();
+        BallModel b = wall.getBall();
         debugPanel.setValues(b.getSpeedX(),b.getSpeedY());
     }
 

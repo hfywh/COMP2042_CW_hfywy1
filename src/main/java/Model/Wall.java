@@ -15,7 +15,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package Model;
+
+import Controller.Crack;
+import Controller.PlayerController;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -25,9 +28,9 @@ public class Wall {
 
     private Rectangle area;
 
-    private Brick[] bricks;
-    private Ball ball;
-    private Player player;
+    private BrickModel[] brickModels;
+    private BallModel ballModel;
+    private PlayerController playerController;
 
     private Point startPoint;
     private int brickCount;
@@ -46,7 +49,7 @@ public class Wall {
 
         getBall().setSpeed(3,-5);
 
-        player = new Player((Point) ballPos.clone(),150,10, drawArea);
+        playerController = new PlayerController((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
 
@@ -62,12 +65,12 @@ public class Wall {
     }
 
     private void makeBall(Point2D ballPos){
-        ball = new RubberBall(ballPos);
+        ballModel = new RubberBall(ballPos);
     }
 
     public void move(){
-        player.move();
-        ball.move();
+        playerController.move();
+        ballModel.move();
     }
 
     public void findImpacts(){
@@ -94,25 +97,25 @@ public class Wall {
     }
 
     private boolean impactWall(){
-        for(Brick b : bricks){
+        for(BrickModel b : brickModels){
             //Vertical Impact
             //Horizontal Impact
-            switch (b.findImpact(ball)) {
-                case Brick.UP_IMPACT -> {
-                    ball.reverseY();
-                    return b.setImpact(getBall().getDown(), Crack.UP);
+            switch (b.findImpact(ballModel)) {
+                case BrickModel.UP_IMPACT -> {
+                    ballModel.reverseY();
+                    return b.setImpact(getBall().getDown(), Crack.getUp());
                 }
-                case Brick.DOWN_IMPACT -> {
-                    ball.reverseY();
-                    return b.setImpact(getBall().getUp(), Crack.DOWN);
+                case BrickModel.DOWN_IMPACT -> {
+                    ballModel.reverseY();
+                    return b.setImpact(getBall().getUp(), Crack.getDown());
                 }
-                case Brick.LEFT_IMPACT -> {
-                    ball.reverseX();
-                    return b.setImpact(getBall().getRight(), Crack.RIGHT);
+                case BrickModel.LEFT_IMPACT -> {
+                    ballModel.reverseX();
+                    return b.setImpact(getBall().getRight(), Crack.getRight());
                 }
-                case Brick.RIGHT_IMPACT -> {
-                    ball.reverseX();
-                    return b.setImpact(getBall().getLeft(), Crack.LEFT);
+                case BrickModel.RIGHT_IMPACT -> {
+                    ballModel.reverseX();
+                    return b.setImpact(getBall().getLeft(), Crack.getLeft());
                 }
             }
         }
@@ -120,7 +123,7 @@ public class Wall {
     }
 
     private boolean impactBorder(){
-        Point2D p = ball.getPosition();
+        Point2D p = ballModel.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
@@ -137,17 +140,17 @@ public class Wall {
     }
 
     public void ballReset(){
-        player.moveTo(startPoint);
-        ball.moveTo(startPoint);
+        playerController.moveTo(startPoint);
+        ballModel.moveTo(startPoint);
 
-        ball.setSpeed(3,-5);
+        ballModel.setSpeed(3,-5);
         ballLost = false;
     }
 
     public void wallReset(){
-        for(Brick b : bricks)
+        for(BrickModel b : brickModels)
             b.repair();
-        brickCount = bricks.length;
+        brickCount = brickModels.length;
         ballCount = 3;
     }
 
@@ -160,34 +163,34 @@ public class Wall {
     }
 
     public void setBallXSpeed(int s){
-        ball.setXSpeed(s);
+        ballModel.setXSpeed(s);
     }
 
     public void setBallYSpeed(int s){
-        ball.setYSpeed(s);
+        ballModel.setYSpeed(s);
     }
 
     public void resetBallCount(){
         ballCount = 3;
     }
 
-    public void setBricks(Brick[] bricks) {
-        this.bricks = bricks;
+    public void setBricks(BrickModel[] brickModels) {
+        this.brickModels = brickModels;
     }
 
     public void setBrickCount(int brickCount){
         this.brickCount = brickCount;
     }
 
-    public Brick[] getBricks() {
-        return bricks;
+    public BrickModel[] getBricks() {
+        return brickModels;
     }
 
-    public Ball getBall(){
-        return ball;
+    public BallModel getBall(){
+        return ballModel;
     }
 
-    public Player getPlayer() {
-        return player;
+    public PlayerController getPlayer() {
+        return playerController;
     }
 }

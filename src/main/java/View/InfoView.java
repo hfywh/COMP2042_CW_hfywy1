@@ -1,4 +1,6 @@
-package test;
+package View;
+
+import Model.InfoModel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -66,8 +68,8 @@ public class InfoView implements ImageObserver {
         Color prevColor = g2d.getColor();
         Font prevFont = g2d.getFont();
 
-        double x = InfoModel.menuFace.getX();
-        double y = InfoModel.menuFace.getY();
+        double x = InfoModel.getMenuFace().getX();
+        double y = InfoModel.getMenuFace().getY();
 
         g2d.translate(x,y);
 
@@ -115,76 +117,76 @@ public class InfoView implements ImageObserver {
 
         int sX,sY;
 
-        sX = (int)(InfoModel.menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int)(InfoModel.menuFace.getHeight() / 8);
+        sX = (int)(InfoModel.getMenuFace().getWidth() - greetingsRect.getWidth()) / 2;
+        sY = (int)(InfoModel.getMenuFace().getHeight() / 8);
 
         g2d.setFont(greetingsFont);
         g2d.drawString(GREETINGS,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - gameTitleRect.getWidth()) / 2;
         sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
 
         g2d.setFont(gameTitleFont);
         g2d.drawString(GAME_TITLE,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - creditsRect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - creditsRect.getWidth()) / 2;
         sY += (int) creditsRect.getHeight() * 1.1;
 
         g2d.setFont(creditsFont);
         g2d.drawString(CREDITS,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail1Rect.getWidth()) / 2;
-        sY += (int) (InfoModel.menuFace.getHeight() / 10);
+        sX = (int)(InfoModel.getMenuFace().getWidth() - gameDetail1Rect.getWidth()) / 2;
+        sY += (int) (InfoModel.getMenuFace().getHeight() / 10);
 
         g2d.setFont(infoFont);
         g2d.drawString(GAME_DETAILS1,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail2Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - gameDetail2Rect.getWidth()) / 2;
         sY += (int) gameDetail2Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS2,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail3Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - gameDetail3Rect.getWidth()) / 2;
         sY += (int) gameDetail3Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS3,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail4Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - gameDetail4Rect.getWidth()) / 2;
         sY += (int) gameDetail4Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS4,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - gameDetail5Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - gameDetail5Rect.getWidth()) / 2;
         sY += (int) gameDetail5Rect.getHeight() * 1.1;
 
         g2d.drawString(GAME_DETAILS5,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail1Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - brickDetail1Rect.getWidth()) / 2;
         sY += (int) brickDetail1Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS1,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail2Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - brickDetail2Rect.getWidth()) / 2;
         sY += (int) brickDetail2Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS2,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail3Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - brickDetail3Rect.getWidth()) / 2;
         sY += (int) brickDetail3Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS3,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail4Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - brickDetail4Rect.getWidth()) / 2;
         sY += (int) brickDetail4Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS4,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail5Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - brickDetail5Rect.getWidth()) / 2;
         sY += (int) brickDetail5Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS5,sX,sY);
 
-        sX = (int)(InfoModel.menuFace.getWidth() - brickDetail6Rect.getWidth()) / 2;
+        sX = (int)(InfoModel.getMenuFace().getWidth() - brickDetail6Rect.getWidth()) / 2;
         sY += (int) brickDetail6Rect.getHeight() * 1.1;
 
         g2d.drawString(BRICK_DETAILS6,sX,sY);
@@ -198,27 +200,27 @@ public class InfoView implements ImageObserver {
 
         g2d.setFont(buttonFont);
 
-        int x = (InfoModel.menuFace.width - InfoModel.backButton.width) / 2;
-        int y =(int) ((InfoModel.menuFace.height - InfoModel.backButton.height) * 0.95);
+        int x = (InfoModel.getMenuFace().width - InfoModel.getBackButton().width) / 2;
+        int y =(int) ((InfoModel.getMenuFace().height - InfoModel.getBackButton().height) * 0.95);
 
-        InfoModel.backButton.setLocation(x,y);
+        InfoModel.getBackButton().setLocation(x,y);
 
-        x = (int)(InfoModel.backButton.getWidth() - backRect.getWidth()) / 2;
-        y = (int)(InfoModel.backButton.getHeight() - backRect.getHeight()) / 2;
+        x = (int)(InfoModel.getBackButton().getWidth() - backRect.getWidth()) / 2;
+        y = (int)(InfoModel.getBackButton().getHeight() - backRect.getHeight()) / 2;
 
-        x += InfoModel.backButton.x;
-        y += InfoModel.backButton.y + (InfoModel.backButton.height * 0.8);
+        x += InfoModel.getBackButton().x;
+        y += InfoModel.getBackButton().y + (InfoModel.getBackButton().height * 0.8);
 
         if(InfoModel.backClicked){
             Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(InfoModel.backButton);
+            g2d.draw(InfoModel.getBackButton());
             g2d.setColor(CLICKED_TEXT);
             g2d.drawString(BACK_TEXT,x,y);
             g2d.setColor(tmp);
         }
         else{
-            g2d.draw(InfoModel.backButton);
+            g2d.draw(InfoModel.getBackButton());
             g2d.drawString(BACK_TEXT,x,y);
         }
 

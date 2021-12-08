@@ -1,4 +1,4 @@
-package test;
+package Model;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -8,7 +8,7 @@ import java.awt.geom.RectangularShape;
  * Created by filippo on 04/09/16.
  *
  */
-abstract public class Ball {
+abstract public class BallModel {
 
     private Shape ballFace;
 
@@ -25,7 +25,7 @@ abstract public class Ball {
     private int speedX;
     private int speedY;
 
-    public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
+    public BallModel(Point2D center, int radiusA, int radiusB, Color inner, Color border){
         this.center = center;
 
         setUp();
