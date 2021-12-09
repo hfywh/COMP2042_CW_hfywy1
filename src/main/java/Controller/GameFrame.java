@@ -28,6 +28,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 
+/**
+ * set up JFrame for the game
+ */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -39,6 +42,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
+    /**
+     * set the UI for the whole game
+     */
     public GameFrame(){
         super();
 
@@ -61,6 +67,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * initialize game frame
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -69,6 +78,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
+    /**
+     * enable game board
+     */
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenuModel);
@@ -80,6 +92,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * auto locate the ui
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
@@ -88,6 +103,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
 
+    /**
+     * set gaming to true when the window gained focus
+     * @param windowEvent window gained focus
+     */
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
         /*
@@ -101,6 +120,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = true;
     }
 
+    /**
+     * when the window lost focus it will tell the game board to pause the game
+     * @param windowEvent window lost focus
+     */
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
@@ -108,6 +131,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * change from info view to home menu view
+     */
     public void infotoHomeMenu(){
         this.dispose();
         this.remove(infoModel);
@@ -118,8 +144,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * enable the info view
+     */
     public void enableInfo(){
-        //infoModel = new InfoModel(this,new Dimension(700,450));
         this.dispose();
         this.remove(homeMenuModel);
         this.add(infoModel,BorderLayout.CENTER);
@@ -129,6 +157,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * back to home menu view through pause menu
+     */
     public void pauseMenutoHomeMenu(){
         this.dispose();
         this.remove(gameBoardModel);
@@ -139,6 +170,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * display the high score
+     */
     public void enableHighScore(){
         this.dispose();
         this.remove(homeMenuModel);
@@ -149,6 +183,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * switch back to home menu view from high score view
+     */
     public void highScoretoHomeMenu(){
         this.dispose();
         this.remove(highScore);
@@ -159,34 +196,66 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * set the info model
+     * @param infoModel info model
+     */
     private void setInfoModel(InfoModel infoModel){
         GameFrame.infoModel = infoModel;
     }
 
+    /**
+     * get info model
+     * @return info model
+     */
     public static InfoModel getInfoModel(){
         return infoModel;
     }
 
+    /**
+     * set high score class
+     * @param highScore high score
+     */
     private void setHighScore(HighScore highScore){
         GameFrame.highScore = highScore;
     }
 
+    /**
+     * get high score class
+     * @return high score
+     */
     public static HighScore getHighScore(){
         return highScore;
     }
 
+    /**
+     * set home menu model
+     * @param homeMenuModel home menu model
+     */
     private void setHomeMenuModel(HomeMenuModel homeMenuModel){
         GameFrame.homeMenuModel = homeMenuModel;
     }
 
+    /**
+     * get home menu model
+     * @return home menu model
+     */
     public static HomeMenuModel getHomeMenuModel(){
         return homeMenuModel;
     }
 
+    /**
+     * set game board model
+     * @param gameBoardModel game board model
+     */
     private void setGameBoardModel(GameBoardModel gameBoardModel){
         GameFrame.gameBoardModel = gameBoardModel;
     }
 
+    /**
+     * get game board model
+     * @return game board model
+     */
     public static GameBoardModel getGameBoardModel(){
         return gameBoardModel;
     }

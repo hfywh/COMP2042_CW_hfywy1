@@ -31,7 +31,7 @@ public class InfoView implements ImageObserver {
     private static final Color BG_COLOR = Color.GRAY.darker();
     private static final Color TEXT_COLOR = Color.WHITE;
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
-    private static final Color CLICKED_TEXT = Color.WHITE;
+    private static final Color CLICKED_TEXT = Color.RED;
 
     private Font greetingsFont;
     private Font gameTitleFont;

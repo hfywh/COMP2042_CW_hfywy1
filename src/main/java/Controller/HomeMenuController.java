@@ -24,7 +24,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * controller for home menu
+ * mouse listener and mouse motion listener for home menu
+ */
 public class HomeMenuController implements MouseListener, MouseMotionListener{
+    /**
+     * run the code if any buttons is being clicked
+     * @param e mouse clicked
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         Point p = e.getPoint();
@@ -47,6 +55,10 @@ public class HomeMenuController implements MouseListener, MouseMotionListener{
 
     }
 
+    /**
+     * set the button to green and the text to white if any buttons is pressed
+     * @param e mouse pressed
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         Point p = e.getPoint();
@@ -70,6 +82,10 @@ public class HomeMenuController implements MouseListener, MouseMotionListener{
 
     }
 
+    /**
+     * set the button and text to blue if any buttons is not pressed
+     * @param e mouse released
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if(HomeMenuModel.isStartClicked() ){
@@ -106,6 +122,10 @@ public class HomeMenuController implements MouseListener, MouseMotionListener{
 
     }
 
+    /**
+     * set to hand cursor when the cursor is on any buttons
+     * @param e mouse moved
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         Point p = e.getPoint();
@@ -116,18 +136,30 @@ public class HomeMenuController implements MouseListener, MouseMotionListener{
 
     }
 
+    /**
+     * repaint start button
+     */
     private void repaintStartBtn(){
         GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getStartButton().x,HomeMenuModel.getStartButton().y,HomeMenuModel.getStartButton().width+1,HomeMenuModel.getStartButton().height+1);
     }
 
+    /**
+     * repaint exit button
+     */
     private void repaintExitBtn(){
         GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getExitButton().x,HomeMenuModel.getExitButton().y,HomeMenuModel.getExitButton().width+1,HomeMenuModel.getExitButton().height+1);
     }
 
+    /**
+     * repaint info button
+     */
     private void repaintInfoBtn(){
         GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getInfoButton().x, HomeMenuModel.getInfoButton().y, HomeMenuModel.getInfoButton().width + 1, HomeMenuModel.getInfoButton().height + 1);
     }
 
+    /**
+     * repaint high score button
+     */
     private void repaintHighScoreBtn(){
         GameFrame.getHomeMenuModel().repaint(HomeMenuModel.getHighScoreButton().x, HomeMenuModel.getHighScoreButton().y, HomeMenuModel.getHighScoreButton().width + 1, HomeMenuModel.getHighScoreButton().height + 1);
     }

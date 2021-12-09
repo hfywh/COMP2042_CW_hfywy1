@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
+/**
+ * when the brick get impact but not broken, the brick crack
+ */
 public class Crack {
     private static final int CRACK_SECTIONS = 3;
     private static final double JUMP_PROBABILITY = 0.7;

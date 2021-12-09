@@ -6,11 +6,19 @@ import Model.Wall;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * controller of game board
+ * listen to key and mouse of the user and give responses
+ */
 public class GameBoardController implements KeyListener, MouseListener, MouseMotionListener {
     @Override
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * change the ui according to the key pressed
+     * @param keyEvent key pressed
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
@@ -44,11 +52,19 @@ public class GameBoardController implements KeyListener, MouseListener, MouseMot
         }
     }
 
+    /**
+     * stop when the key is released
+     * @param keyEvent key release
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         GameBoardModel.getWall().getPlayer().stop();
     }
 
+    /**
+     * when mouse clicked on button of the pause menu perform related function
+     * @param mouseEvent mouse click
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -108,6 +124,10 @@ public class GameBoardController implements KeyListener, MouseListener, MouseMot
 
     }
 
+    /**
+     * set to hand cursor when the cursor is on the buttons
+     * @param mouseEvent mouse move
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();

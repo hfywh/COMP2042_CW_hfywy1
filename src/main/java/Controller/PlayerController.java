@@ -22,6 +22,10 @@ import Model.BallModel;
 import java.awt.*;
 
 
+/**
+ * controller for player
+ * set up player in game
+ */
 public class PlayerController {
 
 
@@ -37,6 +41,13 @@ public class PlayerController {
     private int max;
 
 
+    /**
+     * set up player in the game
+     * @param ballPoint point of ball
+     * @param width width of player
+     * @param height height of player
+     * @param container area of rectangle
+     */
     public PlayerController(Point ballPoint, int width, int height, Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
@@ -46,15 +57,29 @@ public class PlayerController {
 
     }
 
+    /**
+     * make rectangle for player
+     * @param width width of player
+     * @param height height of player
+     * @return area of rectangle
+     */
     private Rectangle makeRectangle(int width,int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
     }
 
+    /**
+     * check whether there is an impact
+     * @param b ball model
+     * @return boolean
+     */
     public boolean impact(BallModel b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown()) ;
     }
 
+    /**
+     * player cannot get out of the screen
+     */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)
@@ -63,31 +88,56 @@ public class PlayerController {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * player move to left
+     */
     public void moveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * player move to right
+     */
     public void movRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * player stop, not moving
+     */
     public void stop(){
         moveAmount = 0;
     }
 
+    /**
+     * get player face
+     * @return shape of player
+     */
     public Shape getPlayerFace(){
         return  playerFace;
     }
 
+    /**
+     * ball move to point p
+     * @param p point
+     */
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * get border color
+     * @return color
+     */
     public static Color getBorderColor(){
         return BORDER_COLOR;
     }
 
+    /**
+     * get inner color
+     * @return color
+     */
     public static Color getInnerColor(){
         return INNER_COLOR;
     }

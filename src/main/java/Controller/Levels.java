@@ -10,6 +10,9 @@ import Model.Wall;
 
 import java.awt.*;
 
+/**
+ * to set up the bricks according to the level
+ */
 public class Levels {
     private static final int LEVELS_COUNT = 6;
 
@@ -23,12 +26,28 @@ public class Levels {
     private static int level;
     private Wall wall;
 
+    /**
+     * draw the brick for the level
+     * @param drawArea area of brick
+     * @param brickCount number of brick
+     * @param lineCount line count
+     * @param brickDimensionRatio brick ratio
+     * @param wall Wall
+     */
     public Levels(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
         level = 0;
         this.wall = wall;
     }
 
+    /**
+     * draw single type of brick
+     * @param drawArea area of rectangle
+     * @param brickCnt brick count
+     * @param lineCnt line count
+     * @param brickSizeRatio brick ratio
+     * @return brick model
+     */
     private BrickModel[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -69,6 +88,16 @@ public class Levels {
 
     }
 
+    /**
+     * draw two type of bricks
+     * @param drawArea area of rectangle
+     * @param brickCnt brick count
+     * @param lineCnt line count
+     * @param brickSizeRatio brick ratio
+     * @param typeA first type of brick
+     * @param typeB second type of brick
+     * @return brick model
+     */
     private BrickModel[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -114,6 +143,14 @@ public class Levels {
         return tmp;
     }
 
+    /**
+     * make the levels
+     * @param drawArea area of rectangle
+     * @param brickCount brick count
+     * @param lineCount line count
+     * @param brickDimensionRatio brick ratio
+     * @return brick model
+     */
     private BrickModel[][] makeLevels(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio){
         BrickModel[][] tmp = new BrickModel[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio);
@@ -125,6 +162,13 @@ public class Levels {
         return tmp;
     }
 
+    /**
+     * make the brick
+     * @param point  point of brick
+     * @param size size of brick
+     * @param type type of brick
+     * @return brick model
+     */
     private BrickModel makeBrick(Point point, Dimension size, int type){
         BrickModel out;
         if (type == CLAY) {
@@ -143,15 +187,26 @@ public class Levels {
         return  out;
     }
 
+    /**
+     * go to next level
+     */
     public void nextLevel(){
         wall.setBricks(levels[level++]);
         wall.setBrickCount(wall.getBricks().length);
     }
 
+    /**
+     * check whether there is still higher level
+     * @return boolean
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * get the level
+     * @return int
+     */
     public static int getLevel(){
         return level;
     }
