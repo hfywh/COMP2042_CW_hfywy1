@@ -7,6 +7,9 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
 
+/**
+ * Make the model of cement brick
+ */
 public class CementBrickModel extends BrickModel {
 
 
@@ -17,17 +20,34 @@ public class CementBrickModel extends BrickModel {
     private Crack crack;
     private Shape brickFace;
 
+    /**
+     * get properties of brick
+     * @param point point of brick
+     * @param size size of brick
+     */
     public CementBrickModel(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS, this);
         brickFace = super.getbrickFace();
     }
 
+    /**
+     * make the shape of brick
+     * @param pos  position of brick
+     * @param size size of brick
+     * @return shape of brick
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * Use to check is there any impact
+     * @param point point of brick
+     * @param dir   direction of brick
+     * @return impact of brick
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -42,11 +62,18 @@ public class CementBrickModel extends BrickModel {
     }
 
 
+    /**
+     * get the model of brick
+     * @return shape of brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * Update the state of brick
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();
@@ -55,6 +82,9 @@ public class CementBrickModel extends BrickModel {
         }
     }
 
+    /**
+     * Repair the brick
+     */
     public void repair(){
         super.repair();
         crack.reset();

@@ -22,6 +22,9 @@ import Controller.GameFrame;
 import java.awt.*;
 
 
+/**
+ * GraphicsMain is to compile and run the program
+ */
 public class GraphicsMain {
 
     public static void main(String[] args){

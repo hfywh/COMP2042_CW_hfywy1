@@ -24,6 +24,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 
+/**
+ * Set the scene for each level
+ */
 public class Wall {
 
     private Rectangle area;
@@ -38,6 +41,11 @@ public class Wall {
     private boolean ballLost;
     private static int totalBrickDestroyed = 0;
 
+    /**
+     * Make ball, bricks and player
+     * @param drawArea Area of player
+     * @param ballPos Position of ball
+     */
     public Wall(Rectangle drawArea, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -56,23 +64,41 @@ public class Wall {
 
     }
 
+    /**
+     * Get the total brick destroyed
+     * @return Total brick destroyed
+     */
     public static int getTotalBrickDestroyed() {
         return totalBrickDestroyed;
     }
 
+    /**
+     * Set the total brick destroyed
+     * @param totalBrickDestroyed Total brick destroyed
+     */
     public static void setTotalBrickDestroyed(int totalBrickDestroyed) {
         Wall.totalBrickDestroyed = totalBrickDestroyed;
     }
 
+    /**
+     * Make ball
+     * @param ballPos Position of ball
+     */
     private void makeBall(Point2D ballPos){
         ballModel = new RubberBall(ballPos);
     }
 
+    /**
+     * Move the player and move the ball
+     */
     public void move(){
         playerController.move();
         ballModel.move();
     }
 
+    /**
+     * Find impact of the ball
+     */
     public void findImpacts(){
         if(getPlayer().impact(getBall())){
             getBall().reverseY();
@@ -96,6 +122,10 @@ public class Wall {
         }
     }
 
+    /**
+     * Change the moving direction of the ball if impact on the bricks
+     * @return impact on brick
+     */
     private boolean impactWall(){
         for(BrickModel b : brickModels){
             //Vertical Impact
@@ -122,23 +152,42 @@ public class Wall {
         return false;
     }
 
+    /**
+     * Change the moving direction of the ball if impact on the border
+     * @return impact on border
+     */
     private boolean impactBorder(){
         Point2D p = ballModel.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
+    /**
+     * Get number of bricks
+     * @return Number of bricks
+     */
     public int getBrickCount(){
         return brickCount;
     }
 
+    /**
+     * Get number of balls
+     * @return Number of balls
+     */
     public int getBallCount(){
         return ballCount;
     }
 
+    /**
+     * Change the number of ball
+     * @return Loss of ball
+     */
     public boolean isBallLost(){
         return ballLost;
     }
 
+    /**
+     * Reset the ball to starting position
+     */
     public void ballReset(){
         playerController.moveTo(startPoint);
         ballModel.moveTo(startPoint);
@@ -147,6 +196,9 @@ public class Wall {
         ballLost = false;
     }
 
+    /**
+     * Reset all the bricks
+     */
     public void wallReset(){
         for(BrickModel b : brickModels)
             b.repair();
@@ -154,42 +206,80 @@ public class Wall {
         ballCount = 3;
     }
 
+    /**
+     * Game over
+     * @return End of ball
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * @return Level finished
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * Set X-speed of ball
+     * @param s X-speed of ball
+     */
     public void setBallXSpeed(int s){
         ballModel.setXSpeed(s);
     }
 
+    /**
+     * Set Y-speed of ball
+     * @param s Y-speed of ball
+     */
     public void setBallYSpeed(int s){
         ballModel.setYSpeed(s);
     }
 
+    /**
+     * Reset number of balls
+     */
     public void resetBallCount(){
         ballCount = 3;
     }
 
+    /**
+     * Make bricks
+     * @param brickModels Model of brick
+     */
     public void setBricks(BrickModel[] brickModels) {
         this.brickModels = brickModels;
     }
 
+    /**
+     * Set number of bricks
+     * @param brickCount Number of bricks
+     */
     public void setBrickCount(int brickCount){
         this.brickCount = brickCount;
     }
 
+    /**
+     * Get brick model
+     * @return Model of brick
+     */
     public BrickModel[] getBricks() {
         return brickModels;
     }
 
+    /**
+     * Get ball model
+     * @return Model of ball
+     */
     public BallModel getBall(){
         return ballModel;
     }
 
+    /**
+     * Get player
+     * @return Player
+     */
     public PlayerController getPlayer() {
         return playerController;
     }

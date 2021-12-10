@@ -139,7 +139,7 @@ public class Crack {
     }
 
     /**
-     * @param i
+     * @param i integer
      * @param divisions division of crack
      * @return crack division
      */

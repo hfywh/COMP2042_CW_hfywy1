@@ -7,6 +7,9 @@ import View.InfoView;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Consist of data regarding info scene
+ */
 public class InfoModel extends JComponent{
 
     private static Rectangle menuFace;
@@ -16,6 +19,11 @@ public class InfoModel extends JComponent{
 
     public static boolean backClicked;
 
+    /**
+     * Set up the info scene
+     * @param owner Game frame
+     * @param area Dimension of info
+     */
     public InfoModel(GameFrame owner, Dimension area){
 
         this.setFocusable(true);
@@ -34,30 +42,58 @@ public class InfoModel extends JComponent{
 
     }
 
+    /**
+     * Get game frame
+     * @return Game frame
+     */
     public static GameFrame getOwner(){
         return owner;
     }
 
+    /**
+     * Get back button
+     * @return Back button
+     */
     public static Rectangle getBackButton() {
         return backButton;
     }
 
+    /**
+     * Set back button
+     * @param backButton Back button
+     */
     public static void setBackButton(Rectangle backButton) {
         InfoModel.backButton = backButton;
     }
 
+    /**
+     * Get size of buttons
+     * @return Size of buttons
+     */
     public static Rectangle getMenuFace() {
         return menuFace;
     }
 
+    /**
+     * Set size of buttons
+     * @param menuFace Size of buttons
+     */
     public static void setMenuFace(Rectangle menuFace) {
         InfoModel.menuFace = menuFace;
     }
 
+    /**
+     * Set game frame
+     * @param owner Game frame
+     */
     public void setOwner(GameFrame owner){
         InfoModel.owner = owner;
     }
 
+    /**
+     * Display info scene
+     * @param g Graphics
+     */
     public void paint(Graphics g){
         new InfoView(g);
     }

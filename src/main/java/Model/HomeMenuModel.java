@@ -24,6 +24,9 @@ import View.HomeMenuView;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Consist all data regarding home menu scene
+ */
 public class HomeMenuModel extends JComponent{
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
@@ -56,6 +59,11 @@ public class HomeMenuModel extends JComponent{
     private static boolean infoClicked;
     private static boolean highScoreClicked;
 
+    /**
+     * Set up home menu scene
+     * @param owner Game frame
+     * @param area Dimension of home menu
+     */
     public HomeMenuModel(GameFrame owner,Dimension area){
 
         this.setFocusable(true);
@@ -85,158 +93,314 @@ public class HomeMenuModel extends JComponent{
 
     }
 
+    /**
+     * Get greetings font
+     * @return Greetings font
+     */
     public static Font getGreetingsFont() {
         return greetingsFont;
     }
 
+    /**
+     * Set greetings font
+     * @param greetingsFont Greetings font
+     */
     public static void setGreetingsFont(Font greetingsFont) {
         HomeMenuModel.greetingsFont = greetingsFont;
     }
 
+    /**
+     * Get game title font
+     * @return Game title font
+     */
     public static Font getGameTitleFont() {
         return gameTitleFont;
     }
 
+    /**
+     * Set game title font
+     * @param gameTitleFont Game title font
+     */
     public static void setGameTitleFont(Font gameTitleFont) {
         HomeMenuModel.gameTitleFont = gameTitleFont;
     }
 
+    /**
+     * Get credits font
+     * @return Credits font
+     */
     public static Font getCreditsFont() {
         return creditsFont;
     }
 
+    /**
+     * Set credits font
+     * @param creditsFont Credits font
+     */
     public static void setCreditsFont(Font creditsFont) {
         HomeMenuModel.creditsFont = creditsFont;
     }
 
+    /**
+     * Get button font
+     * @return Button font
+     */
     public static Font getButtonFont() {
         return buttonFont;
     }
 
+    /**
+     * Set button font
+     * @param buttonFont Button font
+     */
     public static void setButtonFont(Font buttonFont) {
         HomeMenuModel.buttonFont = buttonFont;
     }
 
+    /**
+     * Start button being clicked or not
+     * @return Clicked of start button
+     */
     public static boolean isStartClicked() {
         return startClicked;
     }
 
+    /**
+     * Set the status of start button
+     * @param startClicked Clicked of start button
+     */
     public static void setStartClicked(boolean startClicked) {
         HomeMenuModel.startClicked = startClicked;
     }
 
+    /**
+     * Get exit button
+     * @return Exit button
+     */
     public static Rectangle getExitButton() {
         return exitButton;
     }
 
+    /**
+     * Set exit button
+     * @param exitButton Exit button
+     */
     public static void setExitButton(Rectangle exitButton) {
         HomeMenuModel.exitButton = exitButton;
     }
 
+    /**
+     * Get info button
+     * @return Info button
+     */
     public static Rectangle getInfoButton() {
         return infoButton;
     }
 
+    /**
+     * Set info button
+     * @param infoButton Info button
+     */
     public static void setInfoButton(Rectangle infoButton) {
         HomeMenuModel.infoButton = infoButton;
     }
 
+    /**
+     * Get high score button
+     * @return High score button
+     */
     public static Rectangle getHighScoreButton() {
         return highScoreButton;
     }
 
+    /**
+     * Set high score button
+     * @param highScoreButton High score button
+     */
     public static void setHighScoreButton(Rectangle highScoreButton) {
         HomeMenuModel.highScoreButton = highScoreButton;
     }
 
+    /**
+     * Exit button being clicked or not
+     * @return Clicked of exit button
+     */
     public static boolean isExitClicked() {
         return exitClicked;
     }
 
+    /**
+     * Set the status of exit button
+     * @param exitClicked Clicked of exit button
+     */
     public static void setExitClicked(boolean exitClicked) {
         HomeMenuModel.exitClicked = exitClicked;
     }
 
+    /**
+     * Info button being clicked or not
+     * @return Clicked of info button
+     */
     public static boolean isInfoClicked() {
         return infoClicked;
     }
 
+    /**
+     * Set the status of info button
+     * @param infoClicked Clicked of info button
+     */
     public static void setInfoClicked(boolean infoClicked) {
         HomeMenuModel.infoClicked = infoClicked;
     }
 
+    /**
+     * High score button being clicked or not
+     * @return Clicked of high score button
+     */
     public static boolean isHighScoreClicked() {
         return highScoreClicked;
     }
 
+    /**
+     * Set the status of high score button
+     * @param highScoreClicked Clicked of high score button
+     */
     public static void setHighScoreClicked(boolean highScoreClicked) {
         HomeMenuModel.highScoreClicked = highScoreClicked;
     }
 
+    /**
+     * Get game frame
+     * @return Game frame
+     */
     public static GameFrame getOwner(){
         return owner;
     }
 
+    /**
+     * Set game frame
+     * @param owner Game frame
+     */
     public void setOwner(GameFrame owner){
         HomeMenuModel.owner = owner;
     }
 
+    /**
+     * Display home menu scene
+     * @param g Graphics
+     */
     public void paint(Graphics g){
         new HomeMenuView(g);
     }
 
+    /**
+     * Get exit face
+     * @return Exit face
+     */
     public static Rectangle getExitFace() {
         return exitFace;
     }
 
+    /**
+     * Set exit face
+     * @param exitFace Exit face
+     */
     public void setExitFace(Rectangle exitFace) {
         HomeMenuModel.exitFace = exitFace;
     }
 
+    /**
+     * Get start button
+     * @return Start button
+     */
     public static Rectangle getStartButton() {
         return startButton;
     }
 
+    /**
+     * Set start button
+     * @param startButton Start button
+     */
     public void setStartButton(Rectangle startButton) {
         HomeMenuModel.startButton = startButton;
     }
 
+    /**
+     * Get color of text
+     * @return Color of text
+     */
     public static Color getTextColor() {
         return TEXT_COLOR;
     }
 
+    /**
+     * Get color of clicked button
+     * @return Color of clicked button
+     */
     public static Color getClickedButtonColor() {
         return CLICKED_BUTTON_COLOR;
     }
 
+    /**
+     * Get color of clicked text
+     * @return Color of clicked text
+     */
     public static Color getClickedText() {
         return CLICKED_TEXT;
     }
 
+    /**
+     * Get greetings string
+     * @return Greetings string
+     */
     public static String getGreetings() {
         return GREETINGS;
     }
 
+    /**
+     * Get game title string
+     * @return Game title string
+     */
     public static String getGameTitle() {
         return GAME_TITLE;
     }
 
+    /**
+     * Get credits string
+     * @return Credits string
+     */
     public static String getCredits() {
         return CREDITS;
     }
 
+    /**
+     * Get start text
+     * @return Start text
+     */
     public static String getStartText() {
         return START_TEXT;
     }
 
+    /**
+     * Get exit text
+     * @return Exit text
+     */
     public static String getExitText() {
         return EXIT_TEXT;
     }
 
+    /**
+     * Get info text
+     * @return Info text
+     */
     public static String getInfoText() {
         return INFO_TEXT;
     }
 
+    /**
+     * Get high score text
+     * @return High score text
+     */
     public static String getHighScoreText() {
         return HIGHSCORE_TEXT;
     }

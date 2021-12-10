@@ -27,17 +27,32 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+/**
+ * Main function of this class is to display home menu scene
+ */
 public class HomeMenuView implements ImageObserver {
+    /**
+     * Display home menu scene
+     * @param g Graphics
+     */
     public HomeMenuView(Graphics g) {
 
         paint(g);
     }
 
+    /**
+     * Display home menu scene
+     * @param g Graphics
+     */
     public void paint(Graphics g) {
         drawMenu((Graphics2D) g);
     }
 
 
+    /**
+     * Draw menu
+     * @param g2d Graphics
+     */
     public void drawMenu(Graphics2D g2d) {
 
         drawContainer(g2d);
@@ -65,6 +80,10 @@ public class HomeMenuView implements ImageObserver {
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Display background
+     * @param g2d Graphics
+     */
     private void drawContainer(Graphics2D g2d) {
         BufferedImage homeMenuImage;
         try {
@@ -76,6 +95,10 @@ public class HomeMenuView implements ImageObserver {
 
     }
 
+    /**
+     * Display all the text
+     * @param g2d Graphics
+     */
     private void drawText(Graphics2D g2d) {
 
         g2d.setColor(HomeMenuModel.getTextColor());
@@ -109,6 +132,10 @@ public class HomeMenuView implements ImageObserver {
 
     }
 
+    /**
+     * Display all the buttons
+     * @param g2d Graphics
+     */
     private void drawButton(Graphics2D g2d) {
 
         FontRenderContext frc = g2d.getFontRenderContext();
