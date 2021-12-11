@@ -37,6 +37,7 @@ public class SteelBrickModel extends BrickModel {
 
     private Random rnd;
     private Shape brickFace;
+    private Double randomNumber;
 
     /**
      * Get properties of steel brick
@@ -79,6 +80,7 @@ public class SteelBrickModel extends BrickModel {
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
+        setRandomNumber(rnd.nextDouble());
         impact();
         return  super.isBroken();
     }
@@ -87,9 +89,16 @@ public class SteelBrickModel extends BrickModel {
      * brick receive impact
      */
     public void impact(){
-        if(rnd.nextDouble() < STEEL_PROBABILITY){
+        if(getRandomNumber() < STEEL_PROBABILITY){
             super.impact();
         }
     }
 
+    public Double getRandomNumber() {
+        return randomNumber;
+    }
+
+    public void setRandomNumber(Double randomNumber) {
+        this.randomNumber = randomNumber;
+    }
 }
