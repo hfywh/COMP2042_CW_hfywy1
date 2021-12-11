@@ -25,7 +25,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 
-
+/**
+ * use to check the game
+ */
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
@@ -37,6 +39,10 @@ public class DebugPanel extends JPanel {
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
+    /**
+     * set up the game
+     * @param wall Wall
+     */
     public DebugPanel(Wall wall){
 
         initialize();
@@ -57,17 +63,31 @@ public class DebugPanel extends JPanel {
 
     }
 
+    /**
+     * initialize debug panel
+     */
     private void initialize(){
         this.setBackground(DEF_BKG);
         this.setLayout(new GridLayout(2,2));
     }
 
+    /**
+     * make JButton and add action listener
+     * @param title name of the title
+     * @param e action listener
+     * @return
+     */
     private JButton makeButton(String title, ActionListener e){
         JButton out = new JButton(title);
         out.addActionListener(e);
         return  out;
     }
 
+    /**
+     * make JSlider
+     * @param e change listener
+     * @return JSlider
+     */
     private JSlider makeSlider(ChangeListener e){
         JSlider out = new JSlider(-4, 4);
         out.setMajorTickSpacing(1);
@@ -77,6 +97,11 @@ public class DebugPanel extends JPanel {
         return out;
     }
 
+    /**
+     * set the speed of the ball
+     * @param x speedX of ball
+     * @param y speedY of ball
+     */
     public void setValues(int x,int y){
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);

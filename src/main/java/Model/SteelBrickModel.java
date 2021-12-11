@@ -17,13 +17,14 @@
  */
 package Model;
 
-import Model.BrickModel;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
 
+/**
+ * Make model of steel brick
+ */
 public class SteelBrickModel extends BrickModel {
 
     private static final Color DEF_INNER = new Color(203, 203, 201);
@@ -34,6 +35,11 @@ public class SteelBrickModel extends BrickModel {
     private Random rnd;
     private Shape brickFace;
 
+    /**
+     * Get properties of steel brick
+     * @param point point of brick
+     * @param size size of brick
+     */
     public SteelBrickModel(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
@@ -41,16 +47,32 @@ public class SteelBrickModel extends BrickModel {
     }
 
 
+    /**
+     * make the model of brick
+     * @param pos position of brick
+     * @param size size of brick
+     * @return shape of brick
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * get the model of brick
+     * @return shape of brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * Use to check is there any impact
+     * @param point point of brick
+     * @param dir direction of brick
+     * @return boolean
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -58,6 +80,9 @@ public class SteelBrickModel extends BrickModel {
         return  super.isBroken();
     }
 
+    /**
+     * brick receive impact
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();

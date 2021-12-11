@@ -10,6 +10,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
+/**
+ * Main function of this class is to display info scene
+ */
 public class InfoView implements ImageObserver {
 
     private static final String GREETINGS = "Welcome to Brick Destroy";
@@ -31,7 +34,7 @@ public class InfoView implements ImageObserver {
     private static final Color BG_COLOR = Color.GRAY.darker();
     private static final Color TEXT_COLOR = Color.WHITE;
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
-    private static final Color CLICKED_TEXT = Color.WHITE;
+    private static final Color CLICKED_TEXT = Color.RED;
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -39,6 +42,10 @@ public class InfoView implements ImageObserver {
     private Font infoFont;
     private Font buttonFont;
 
+    /**
+     * Display info scene
+     * @param g Graphics
+     */
     public InfoView(Graphics g){
 
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
@@ -51,11 +58,19 @@ public class InfoView implements ImageObserver {
         paint(g);
     }
 
+    /**
+     * Display info scene
+     * @param g Graphics
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
 
+    /**
+     * Draw menu
+     * @param g2d Graphics
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -83,6 +98,10 @@ public class InfoView implements ImageObserver {
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Display background
+     * @param g2d Graphics
+     */
     private void drawContainer(Graphics2D g2d){
         BufferedImage infoBackground;
         try {
@@ -94,6 +113,10 @@ public class InfoView implements ImageObserver {
         g2d.drawImage(infoBackground, 0, 0, 700, 450, this);
     }
 
+    /**
+     * Display all the text
+     * @param g2d Graphics
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -192,6 +215,10 @@ public class InfoView implements ImageObserver {
         g2d.drawString(BRICK_DETAILS6,sX,sY);
     }
 
+    /**
+     * Display all the buttons
+     * @param g2d Graphics
+     */
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();

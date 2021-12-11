@@ -17,12 +17,13 @@
  */
 package Model;
 
-import Model.BallModel;
-
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
+/**
+ * Make model of rubber ball
+ */
 public class RubberBall extends BallModel {
 
 
@@ -31,11 +32,22 @@ public class RubberBall extends BallModel {
     private static final Color DEF_BORDER_COLOR = DEF_INNER_COLOR.darker().darker();
 
 
+    /**
+     * Get point of runner ball
+     * @param center Center of ball
+     */
     public RubberBall(Point2D center){
         super(center,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
     }
 
 
+    /**
+     * make a ball
+     * @param center center of the ball
+     * @param radiusA X-radius of ball
+     * @param radiusB Y-radius of ball
+     * @return shape of ball
+     */
     @Override
     protected Shape makeBall(Point2D center, int radiusA, int radiusB) {
 

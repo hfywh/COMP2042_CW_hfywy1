@@ -26,6 +26,9 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * use for easy debug
+ */
 public class DebugConsole extends JDialog implements WindowListener{
 
     private static final String TITLE = "Debug Console";
@@ -37,6 +40,11 @@ public class DebugConsole extends JDialog implements WindowListener{
     private Wall wall;
 
 
+    /**
+     * @param owner JFrame
+     * @param wall Wall
+     * @param gameBoard GameBoard
+     */
     public DebugConsole(JFrame owner, Wall wall, GameBoardModel gameBoard){
 
         this.wall = wall;
@@ -51,6 +59,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.pack();
     }
 
+    /**
+     * initialize the debug console
+     */
     private void initialize(){
         this.setModal(true);
         this.setTitle(TITLE);
@@ -61,6 +72,9 @@ public class DebugConsole extends JDialog implements WindowListener{
     }
 
 
+    /**
+     * set location for debug console
+     */
     private void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();
@@ -73,6 +87,10 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * when window close, repaint game board
+     * @param windowEvent window closing
+     */
     @Override
     public void windowClosing(WindowEvent windowEvent) {
         gameBoard.repaint();
@@ -93,6 +111,10 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * when window is activated set the location and set the speed of ball
+     * @param windowEvent window activate
+     */
     @Override
     public void windowActivated(WindowEvent windowEvent) {
         setLocation();

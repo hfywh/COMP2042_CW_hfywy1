@@ -24,6 +24,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
+/**
+ * Make model of game board
+ */
 public class GameBoardModel extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
@@ -62,7 +65,10 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
     private static DebugConsole debugConsole;
 
 
-
+    /**
+     * Set up the game board
+     * @param owner JFrame
+     */
     public GameBoardModel(JFrame owner){
         super();
 
@@ -134,7 +140,9 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
     }
 
 
-
+    /**
+     * Initialize game board
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -145,6 +153,10 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
     }
 
 
+    /**
+     * Paint the game board
+     * @param g Graphics
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -170,6 +182,10 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Clear the game board
+     * @param g2d Graphics
+     */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
         g2d.setColor(BG_COLOR);
@@ -177,6 +193,11 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw model of brick
+     * @param brickModel Model of brick
+     * @param g2d Graphics
+     */
     private void drawBrick(BrickModel brickModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -190,6 +211,11 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw model of ball
+     * @param ballModel Model of ball
+     * @param g2d Graphics
+     */
     private void drawBall(BallModel ballModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -204,6 +230,11 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw player
+     * @param p Player
+     * @param g2d Graphics
+     */
     private void drawPlayer(PlayerController p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -217,11 +248,19 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw menu
+     * @param g2d Graphics
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * Pause the game board
+     * @param g2d Graphics
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -237,6 +276,10 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * Draw pause menu
+     * @param g2d Graphics
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
@@ -306,6 +349,10 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * change the ui according to the key pressed
+     * @param keyEvent key pressed
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
@@ -339,11 +386,19 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         }
     }
 
+    /**
+     * stop when the key is released
+     * @param keyEvent key release
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         wall.getPlayer().stop();
     }
 
+    /**
+     * when mouse clicked on button of the pause menu perform related function
+     * @param mouseEvent mouse click
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -403,6 +458,10 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
 
     }
 
+    /**
+     * set to hand cursor when the cursor is on the buttons
+     * @param mouseEvent mouse move
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -417,134 +476,265 @@ public class GameBoardModel extends JComponent implements KeyListener,MouseListe
         }
     }
 
+    /**
+     * Get message
+     * @return S Message
+     */
     public static String getMessage() {
         return message;
     }
 
+    /**
+     * Set message
+     * @param message Message
+     */
     public static void setMessage(String message) {
         GameBoardModel.message = message;
     }
 
+    /**
+     * Get time message
+     * @return Time message
+     */
     public static String getTimeMessage() {
         return timeMessage;
     }
 
+    /**
+     * Set time message
+     * @param timeMessage Time message
+     */
     public static void setTimeMessage(String timeMessage) {
         GameBoardModel.timeMessage = timeMessage;
     }
 
+    /**
+     * Get brick message
+     * @return Brick message
+     */
     public static String getBrickMessage() {
         return brickMessage;
     }
 
+    /**
+     * Set brick message
+     * @param brickMessage Brick message
+     */
     public static void setBrickMessage(String brickMessage) {
         GameBoardModel.brickMessage = brickMessage;
     }
 
+    /**
+     * Get pause menu need to show or not
+     * @return showing of pause menu
+     */
     public static boolean isShowPauseMenu() {
         return showPauseMenu;
     }
 
+    /**
+     * Determine the showing of pause menu
+     * @param showPauseMenu showing of pause menu
+     */
     public static void setShowPauseMenu(boolean showPauseMenu) {
         GameBoardModel.showPauseMenu = showPauseMenu;
     }
 
+    /**
+     * Get menu font
+     * @return Menu font
+     */
     public static Font getMenuFont() {
         return menuFont;
     }
 
+    /**
+     * Set menu font
+     * @param menuFont Menu font
+     */
     public static void setMenuFont(Font menuFont) {
         GameBoardModel.menuFont = menuFont;
     }
 
+    /**
+     * Get length of string
+     * @return Length of string
+     */
     public static int getStrLen() {
         return strLen;
     }
 
+    /**
+     * Set length of string
+     * @param strLen Length of string
+     */
     public static void setStrLen(int strLen) {
         GameBoardModel.strLen = strLen;
     }
 
+    /**
+     * Get continue button
+     * @return Continue button
+     */
     public static Rectangle getContinueButtonRect() {
         return continueButtonRect;
     }
 
+    /**
+     * Set continue button
+     * @param continueButtonRect Continue button
+     */
     public static void setContinueButtonRect(Rectangle continueButtonRect) {
         GameBoardModel.continueButtonRect = continueButtonRect;
     }
 
+    /**
+     * Get restart button
+     * @return Restart button
+     */
     public static Rectangle getRestartButtonRect() {
         return restartButtonRect;
     }
 
+    /**
+     * Set restart button
+     * @param restartButtonRect Restart button
+     */
     public static void setRestartButtonRect(Rectangle restartButtonRect) {
         GameBoardModel.restartButtonRect = restartButtonRect;
     }
 
+    /**
+     * Get home menu button
+     * @return Home Menu button
+     */
     public static Rectangle getHomeMenuButtonRect() {
         return homeMenuButtonRect;
     }
 
+    /**
+     * Set home menu button
+     * @param homeMenuButtonRect Home menu button
+     */
     public static void setHomeMenuButtonRect(Rectangle homeMenuButtonRect) {
         GameBoardModel.homeMenuButtonRect = homeMenuButtonRect;
     }
 
+    /**
+     * Get exit button
+     * @return Exit button
+     */
     public static Rectangle getExitButtonRect() {
         return exitButtonRect;
     }
 
+    /**
+     * Set exit button
+     * @param exitButtonRect Exit button
+     */
     public static void setExitButtonRect(Rectangle exitButtonRect) {
         GameBoardModel.exitButtonRect = exitButtonRect;
     }
 
+    /**
+     * Get debug console
+     * @return Debug console
+     */
     public static DebugConsole getDebugConsole() {
         return debugConsole;
     }
 
+    /**
+     * Set debug console
+     * @param debugConsole Debug console
+     */
     public static void setDebugConsole(DebugConsole debugConsole) {
         GameBoardModel.debugConsole = debugConsole;
     }
 
+    /**
+     * Get wall
+     * @return Wall
+     */
     public static Wall getWall(){
         return wall;
     }
 
+    /**
+     * Get background color
+     * @return Background color
+     */
     public static Color getBackgroundColor(){
         return BG_COLOR;
     }
 
+    /**
+     * Get menu color
+     * @return Menu color
+     */
     public static Color getMenuColor(){
         return MENU_COLOR;
     }
 
+    /**
+     * Get pause string
+     * @return Pause string
+     */
     public static String getPause(){
         return PAUSE;
     }
 
+    /**
+     * Get continue string
+     * @return Continue string
+     */
     public static String getContinue(){
         return CONTINUE;
     }
 
+    /**
+     * Get restart string
+     * @return Restart string
+     */
     public static String getRestart(){
         return RESTART;
     }
 
+    /**
+     * Get home menu string
+     * @return Home menu string
+     */
     public static String getHomeMenu(){
         return HOMEMENU;
     }
 
+    /**
+     * Get exit string
+     * @return Exit string
+     */
     public static String getExit(){
         return EXIT;
     }
 
+    /**
+     * Get time
+     * @return Time
+     */
     public static Time getTime(){
         return time;
     }
 
+    /**
+     * Get game timer
+     * @return Timer
+     */
     public static Timer getGameTimer(){
         return gameTimer;
     }
 
+    /**
+     * Stop the game if the focus is lost
+     */
     public void onLostFocus(){
         gameTimer.stop();
         time.setPlaying(false);

@@ -1,15 +1,12 @@
 package Model;
 
-import Model.BallModel;
-
 import java.awt.*;
-import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
 /**
  * Created by filippo on 04/09/16.
- *
+ * BrickModel to create a model of brick
  */
 abstract public class BrickModel {
 
@@ -35,6 +32,14 @@ abstract public class BrickModel {
     private boolean broken;
 
 
+    /**
+     * Get properties of brick model
+     * @param pos position of brick
+     * @param size size of brick
+     * @param border border color of brick
+     * @param inner inner color of brick
+     * @param strength strength of brick
+     */
     public BrickModel(Point pos, Dimension size, Color border, Color inner, int strength){
         rnd = new Random();
         broken = false;
@@ -45,8 +50,20 @@ abstract public class BrickModel {
 
     }
 
+    /**
+     * make the model of brick
+     * @param pos position of brick
+     * @param size size of brick
+     * @return shape of brick
+     */
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
+    /**
+     * Use to check is there any impact
+     * @param point point of brick
+     * @param dir direction of brick
+     * @return boolean
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
@@ -54,19 +71,35 @@ abstract public class BrickModel {
         return  broken;
     }
 
+    /**
+     * get the model of brick
+     * @return shape of brick
+     */
     public abstract Shape getBrick();
 
 
-
+    /**
+     * get border color of brick
+     * @return border color of brick
+     */
     public Color getBorderColor(){
         return  border;
     }
 
+    /**
+     * get inner color of brick
+     * @return inner color of brick
+     */
     public Color getInnerColor(){
         return inner;
     }
 
 
+    /**
+     * find impact from ball
+     * @param b model of ball
+     * @return direction of impact
+     */
     public final int findImpact(BallModel b){
         if(broken)
             return 0;
@@ -82,25 +115,43 @@ abstract public class BrickModel {
         return out;
     }
 
+    /**
+     * check the state of brick
+     * @return break of brick
+     */
     public final boolean isBroken(){
         return broken;
     }
 
+    /**
+     * repair the brick
+     */
     public void repair() {
         broken = false;
         strength = fullStrength;
     }
 
+    /**
+     * brick receive impact
+     */
     public void impact(){
         strength--;
         broken = (strength == 0);
     }
 
 
+    /**
+     * get the shape of brick
+     * @return the shape of brick
+     */
     public Shape getbrickFace() {
         return brickFace;
     }
 
+    /**
+     * random number
+     * @return random number
+     */
     public static Random getRandom() {
         return rnd;
     }

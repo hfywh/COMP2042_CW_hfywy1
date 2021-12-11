@@ -9,15 +9,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 
+/**
+ * Main function of this class is to display game board scene
+ */
 public class GameBoardView extends JComponent {
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
+    /**
+     * Display game board scene
+     * @param g Graphics
+     */
     public GameBoardView(Graphics g){
         paint(g);
     }
 
+    /**
+     * Display game board scene
+     * @param g Graphics
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -43,6 +54,10 @@ public class GameBoardView extends JComponent {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Clear the scene
+     * @param g2d Graphics
+     */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
         g2d.setColor(GameBoardModel.getBackgroundColor());
@@ -50,6 +65,11 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * Display the bricks
+     * @param brickModel Model of brick
+     * @param g2d Graphics
+     */
     private void drawBrick(BrickModel brickModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -63,6 +83,11 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * Display the ball
+     * @param ballModel Model of ball
+     * @param g2d Graphics
+     */
     private void drawBall(BallModel ballModel, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -77,6 +102,11 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * Display the player
+     * @param p Player
+     * @param g2d Graphics
+     */
     private void drawPlayer(PlayerController p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -90,11 +120,19 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * Display menu
+     * @param g2d Graphics
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * Pause the game
+     * @param g2d Graphics
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -110,6 +148,10 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * Display pause menu
+     * @param g2d Graphics
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();

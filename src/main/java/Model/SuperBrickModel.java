@@ -1,13 +1,15 @@
 package Model;
 
 import Controller.Crack;
-import Model.BrickModel;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
+/**
+ * Make model of super brick
+ */
 public class SuperBrickModel extends BrickModel {
     private static final Color DEF_INNER = new Color(105, 136, 227);
     private static final Color DEF_BORDER = new Color(33, 81, 179);
@@ -18,6 +20,11 @@ public class SuperBrickModel extends BrickModel {
     private Crack crack;
     private Shape brickFace;
 
+    /**
+     * Get properties of super brick
+     * @param point point of brick
+     * @param size size of brick
+     */
     public SuperBrickModel(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,SUPER_STRENGTH);
         rnd = new Random();
@@ -25,11 +32,23 @@ public class SuperBrickModel extends BrickModel {
         brickFace = super.getbrickFace();
     }
 
+    /**
+     * make the model of brick
+     * @param pos position of brick
+     * @param size size of brick
+     * @return shape of brick
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * Use to check is there any impact
+     * @param point point of brick
+     * @param dir direction of brick
+     * @return boolean
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -43,11 +62,18 @@ public class SuperBrickModel extends BrickModel {
     }
 
 
+    /**
+     * get the model of brick
+     * @return shape of brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * Update status of brick
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();
@@ -56,12 +82,20 @@ public class SuperBrickModel extends BrickModel {
         }
     }
 
+    /**
+     * Repair the brick
+     */
     public void repair(){
         super.repair();
         crack.reset();
         brickFace = super.getbrickFace();
     }
 
+    /**
+     * Determine whether the brick receive impact
+     * @param point Point of brick
+     * @param dir Direction of impact
+     */
     public void impact(Point2D point, int dir){
         if(rnd.nextDouble() < SUPER_PROBABILITY){
             super.impact();

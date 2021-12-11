@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
+/**
+ * when the brick get impact but not broken, the brick crack
+ */
 public class Crack {
     private static final int CRACK_SECTIONS = 3;
     private static final double JUMP_PROBABILITY = 0.7;
@@ -25,6 +28,12 @@ public class Crack {
     private int steps;
 
 
+    /**
+     * make the brick crack
+     * @param crackDepth crack depth of brick
+     * @param steps steps of the brick
+     * @param bricks the type of brick
+     */
     public Crack(int crackDepth, int steps, BrickModel bricks){
         this.bricks = bricks;
         crack = new GeneralPath();
@@ -34,16 +43,25 @@ public class Crack {
     }
 
 
-
+    /**
+     * @return crack of the brick
+     */
     public GeneralPath draw(){
 
         return crack;
     }
 
+    /**
+     * reset the crack
+     */
     public void reset(){
         crack.reset();
     }
 
+    /**
+     * @param point point of the brick
+     * @param direction direction of the impact
+     */
     public void makeCrack(Point2D point, int direction){
         Rectangle bounds = bricks.getbrickFace().getBounds();
 
@@ -78,6 +96,11 @@ public class Crack {
         }
     }
 
+    /**
+     * create a path between start point and end point
+     * @param start start point
+     * @param end end point
+     */
     public void makeCrack(Point start, Point end){
 
         GeneralPath path = new GeneralPath();
@@ -106,11 +129,20 @@ public class Crack {
         crack.append(path,true);
     }
 
+    /**
+     * @param bound bound for the random integer
+     * @return random bound integer
+     */
     private int randomInBounds(int bound){
         int n = (bound * 2) + 1;
         return BrickModel.getRandom().nextInt(n) - bound;
     }
 
+    /**
+     * @param i integer
+     * @param divisions division of crack
+     * @return crack division
+     */
     private boolean inMiddle(int i, int divisions){
         int low = (Crack.CRACK_SECTIONS / divisions);
         int up = low * (divisions - 1);
@@ -118,6 +150,10 @@ public class Crack {
         return  (i > low) && (i < up);
     }
 
+    /**
+     * @param bound bound for the random intger
+     * @return randomInbounds or none
+     */
     private int jumps(int bound){
 
         if(BrickModel.getRandom().nextDouble() > Crack.JUMP_PROBABILITY)
@@ -126,6 +162,12 @@ public class Crack {
 
     }
 
+    /**
+     * @param from start point
+     * @param to end point
+     * @param direction direction
+     * @return location
+     */
     private Point makeRandomPoint(Point from,Point to, int direction){
 
         Point out = new Point();
@@ -141,18 +183,30 @@ public class Crack {
         return out;
     }
 
+    /**
+     * @return left
+     */
     public static int getLeft(){
         return LEFT;
     }
 
+    /**
+     * @return right
+     */
     public static int getRight(){
         return RIGHT;
     }
 
+    /**
+     * @return down
+     */
     public static int getDown(){
         return DOWN;
     }
 
+    /**
+     * @return up
+     */
     public static int getUp(){
         return UP;
     }

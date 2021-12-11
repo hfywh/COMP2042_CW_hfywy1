@@ -16,6 +16,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Display high score
+ * Record high score
+ */
 public class HighScore extends JComponent {
 
     private static final String TITLE = "High Score";
@@ -37,6 +41,11 @@ public class HighScore extends JComponent {
     private static int i;
     private static int[][] highScore;
 
+    /**
+     * Set up the high score function
+     * @param owner Game frame
+     * @param area Dimension of high score
+     */
     public HighScore(GameFrame owner, Dimension area){
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -63,6 +72,9 @@ public class HighScore extends JComponent {
         readFile();
     }
 
+    /**
+     * Read the high score file to get the data
+     */
     public static void readFile(){
         i = 0;
         try{
@@ -82,6 +94,9 @@ public class HighScore extends JComponent {
         }
     }
 
+    /**
+     * Write high score into the high score file
+     */
     public static void writeFile(){
         try {
             FileWriter writer = new FileWriter("src/main/resources/highscore.txt");
@@ -98,6 +113,9 @@ public class HighScore extends JComponent {
         }
     }
 
+    /**
+     * Sort the score according to score and time
+     */
     public static void sortScore() {
         int[] temp;
         if (highScore[8][0] < Wall.getTotalBrickDestroyed()) {
@@ -138,18 +156,34 @@ public class HighScore extends JComponent {
         writeFile();
     }
 
+    /**
+     * Get game frame
+     * @return Game frame
+     */
     public static GameFrame getOwner() {
         return owner;
     }
 
+    /**
+     * Set game frame
+     * @param owner Game frame
+     */
     public static void setOwner(GameFrame owner) {
         HighScore.owner = owner;
     }
 
+    /**
+     * Display the high score screen
+     * @param g Graphics
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
+    /**
+     * Draw high score menu
+     * @param g2d Graphics
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -177,6 +211,10 @@ public class HighScore extends JComponent {
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Get the background of high score
+     * @param g2d Graphics
+     */
     private void drawContainer(Graphics2D g2d){
         BufferedImage highScoreBackground;
         try {
@@ -188,6 +226,10 @@ public class HighScore extends JComponent {
         g2d.drawImage(highScoreBackground, 0, 0, 600, 450, this);
     }
 
+    /**
+     * Display the text in the button
+     * @param g2d Graphics
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(Color.GRAY.darker());
@@ -223,6 +265,10 @@ public class HighScore extends JComponent {
 
     }
 
+    /**
+     * Display buttons
+     * @param g2d Graphics
+     */
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -262,18 +308,34 @@ public class HighScore extends JComponent {
         }
     }
 
+    /**
+     * Get back button
+     * @return Back button
+     */
     public static Rectangle getBackButton() {
         return backButton;
     }
 
+    /**
+     * Set back button
+     * @param backButton Back button
+     */
     public static void setBackButton(Rectangle backButton) {
         HighScore.backButton = backButton;
     }
 
+    /**
+     * Determine is back button being clicked
+     * @return clicked of back button
+     */
     public static Boolean isBackBtnClicked() {
         return backBtnClicked;
     }
 
+    /**
+     * Set the clicked of back button
+     * @param backBtnClicked Clicked of back button
+     */
     public static void setBackBtnClicked(Boolean backBtnClicked) {
         HighScore.backBtnClicked = backBtnClicked;
     }
