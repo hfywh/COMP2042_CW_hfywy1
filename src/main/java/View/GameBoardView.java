@@ -10,7 +10,10 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 
 /**
- * Main function of this class is to display game board scene
+ * Main function of this class is to display game board scene.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class GameBoardView extends JComponent {
 

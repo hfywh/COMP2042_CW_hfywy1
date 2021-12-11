@@ -7,8 +7,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * controller of game board
+ * controller of game board,
  * listen to key and mouse of the user and give responses
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class GameBoardController implements KeyListener, MouseListener, MouseMotionListener {
     @Override

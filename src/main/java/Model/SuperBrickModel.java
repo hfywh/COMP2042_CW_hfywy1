@@ -8,7 +8,10 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 /**
- * Make model of super brick
+ * Make model of super brick.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class SuperBrickModel extends BrickModel {
     private static final Color DEF_INNER = new Color(105, 136, 227);

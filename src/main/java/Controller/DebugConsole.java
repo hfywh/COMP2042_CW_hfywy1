@@ -27,7 +27,10 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 /**
- * use for easy debug
+ * Use for easy debug
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class DebugConsole extends JDialog implements WindowListener{
 
@@ -41,6 +44,7 @@ public class DebugConsole extends JDialog implements WindowListener{
 
 
     /**
+     * Debug console is use to check the game
      * @param owner JFrame
      * @param wall Wall
      * @param gameBoard GameBoard

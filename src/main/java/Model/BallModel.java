@@ -7,6 +7,9 @@ import java.awt.geom.RectangularShape;
 /**
  * Created by filippo on 04/09/16.
  * BallModel create a model of the ball
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 abstract public class BallModel {
 

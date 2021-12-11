@@ -25,12 +25,15 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Consist all data regarding home menu scene
+ * Consist all data regarding home menu scene.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class HomeMenuModel extends JComponent{
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
-    private static final String CREDITS = "Version 1.1";
+    private static final String CREDITS = "Version 1.2";
     private static final String START_TEXT = "Start";
     private static final String EXIT_TEXT = "Exit";
     private static final String INFO_TEXT = "Info";

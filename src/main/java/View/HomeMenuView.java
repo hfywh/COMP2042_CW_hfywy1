@@ -28,7 +28,10 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 /**
- * Main function of this class is to display home menu scene
+ * Main function of this class is to display home menu scene.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class HomeMenuView implements ImageObserver {
     /**

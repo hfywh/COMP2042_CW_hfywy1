@@ -17,8 +17,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Display high score
- * Record high score
+ * Display high score.
+ * Record high score.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class HighScore extends JComponent {
 

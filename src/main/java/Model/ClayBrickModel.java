@@ -5,7 +5,10 @@ import java.awt.*;
 
 /**
  * Created by filippo on 04/09/16.
- * Make model of clay brick
+ * Make model of clay brick.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class ClayBrickModel extends BrickModel {
 

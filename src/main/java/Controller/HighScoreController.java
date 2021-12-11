@@ -10,6 +10,9 @@ import java.awt.event.MouseMotionListener;
 /**
  * controller for high score
  * listen to mouse of the user and give responses
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class HighScoreController implements MouseListener, MouseMotionListener {
     /**

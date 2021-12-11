@@ -8,7 +8,10 @@ import java.awt.geom.Point2D;
 
 
 /**
- * Make the model of cement brick
+ * Make the model of cement brick.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class CementBrickModel extends BrickModel {
 

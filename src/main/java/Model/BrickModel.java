@@ -6,7 +6,10 @@ import java.util.Random;
 
 /**
  * Created by filippo on 04/09/16.
- * BrickModel to create a model of brick
+ * BrickModel to create a model of brick.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 abstract public class BrickModel {
 

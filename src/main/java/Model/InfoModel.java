@@ -8,7 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Consist of data regarding info scene
+ * Consist of data regarding info scene.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class InfoModel extends JComponent{
 

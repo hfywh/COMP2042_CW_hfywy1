@@ -23,7 +23,10 @@ import java.util.Random;
 
 
 /**
- * Make model of steel brick
+ * Make model of steel brick.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class SteelBrickModel extends BrickModel {
 

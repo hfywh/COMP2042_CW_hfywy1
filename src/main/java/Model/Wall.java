@@ -25,7 +25,10 @@ import java.awt.geom.Point2D;
 
 
 /**
- * Set the scene for each level
+ * Set the scene for each level.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class Wall {
 
@@ -215,6 +218,7 @@ public class Wall {
     }
 
     /**
+     * Check if all the levels are completed
      * @return Level finished
      */
     public boolean isDone(){

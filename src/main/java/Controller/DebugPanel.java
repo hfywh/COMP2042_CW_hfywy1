@@ -27,6 +27,9 @@ import java.awt.event.ActionListener;
 
 /**
  * use to check the game
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class DebugPanel extends JPanel {
 
@@ -40,7 +43,7 @@ public class DebugPanel extends JPanel {
     private static final int DEF_HEIGHT = 450;
 
     /**
-     * set up the game
+     * set up the debug panel
      * @param wall Wall
      */
     public DebugPanel(Wall wall){

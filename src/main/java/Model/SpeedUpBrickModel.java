@@ -4,7 +4,10 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 /**
- * Make model of speed up brick
+ * Make model of speed up brick.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class SpeedUpBrickModel extends BrickModel {
 

@@ -24,9 +24,16 @@ import java.awt.*;
 
 /**
  * GraphicsMain is to compile and run the program
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class GraphicsMain {
 
+    /**
+     * This is the main method to run the game
+     * @param args Arguments
+     */
     public static void main(String[] args){
         EventQueue.invokeLater(() -> new GameFrame().initialize());
     }
