@@ -144,4 +144,8 @@ public class PlayerController {
     public static Color getInnerColor(){
         return INNER_COLOR;
     }
+
+    public int getMoveAmount() {
+        return moveAmount;
+    }
 }

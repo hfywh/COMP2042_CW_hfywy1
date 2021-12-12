@@ -287,4 +287,8 @@ public class Wall {
     public PlayerController getPlayer() {
         return playerController;
     }
+
+    public void setBallLost(boolean ballLost){
+        this.ballLost = ballLost;
+    }
 }

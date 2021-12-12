@@ -52,7 +52,7 @@ abstract public class BallModel {
 
 
         ballFace = makeBall(center,radiusA,radiusB);
-        this.border = border;
+        setBorderColor(border);
         this.inner  = inner;
         setXSpeed(0);
         setYSpeed(0);
@@ -131,12 +131,20 @@ abstract public class BallModel {
         return border;
     }
 
+    public void setBorderColor(Color border){
+        this.border = border;
+    }
+
     /**
      * get inner color of ball
      * @return inner color of ball
      */
     public Color getInnerColor(){
         return inner;
+    }
+
+    public void setInnerColor(Color inner) {
+        this.inner = inner;
     }
 
     /**

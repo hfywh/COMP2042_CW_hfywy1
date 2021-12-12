@@ -73,7 +73,7 @@ public class Time {
      * check if the timer is playing
      * @return boolean
      */
-    private boolean getPlaying() {
+    public boolean getPlaying() {
         return playing;
     }
 
