@@ -25,7 +25,10 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
 /**
- * Make model of game board
+ * Make model of game board.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class GameBoardModel extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
     private static final String CONTINUE = "Continue";

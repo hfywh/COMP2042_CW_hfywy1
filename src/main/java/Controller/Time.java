@@ -6,6 +6,9 @@ import java.util.TimerTask;
 
 /**
  *  Use to record time taken
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class Time {
     private static int seconds;
@@ -70,7 +73,7 @@ public class Time {
      * check if the timer is playing
      * @return boolean
      */
-    private boolean getPlaying() {
+    public boolean getPlaying() {
         return playing;
     }
 

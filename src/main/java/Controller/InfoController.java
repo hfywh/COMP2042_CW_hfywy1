@@ -8,8 +8,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 /**
- * Controller for the info
+ * Controller for the info,
  * listen to mouse of the user and give responses
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class InfoController implements MouseListener, MouseMotionListener {
 

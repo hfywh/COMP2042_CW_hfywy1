@@ -7,6 +7,9 @@ import java.awt.geom.RectangularShape;
 /**
  * Created by filippo on 04/09/16.
  * BallModel create a model of the ball
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 abstract public class BallModel {
 
@@ -49,7 +52,7 @@ abstract public class BallModel {
 
 
         ballFace = makeBall(center,radiusA,radiusB);
-        this.border = border;
+        setBorderColor(border);
         this.inner  = inner;
         setXSpeed(0);
         setYSpeed(0);
@@ -128,12 +131,20 @@ abstract public class BallModel {
         return border;
     }
 
+    public void setBorderColor(Color border){
+        this.border = border;
+    }
+
     /**
      * get inner color of ball
      * @return inner color of ball
      */
     public Color getInnerColor(){
         return inner;
+    }
+
+    public void setInnerColor(Color inner) {
+        this.inner = inner;
     }
 
     /**

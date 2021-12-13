@@ -8,7 +8,10 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 /**
- * Make model of super brick
+ * Make model of super brick.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class SuperBrickModel extends BrickModel {
     private static final Color DEF_INNER = new Color(105, 136, 227);
@@ -19,6 +22,7 @@ public class SuperBrickModel extends BrickModel {
     private Random rnd;
     private Crack crack;
     private Shape brickFace;
+    private Double randomNumber;
 
     /**
      * Get properties of super brick
@@ -53,6 +57,7 @@ public class SuperBrickModel extends BrickModel {
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
             return false;
+        setRandomNumber(rnd.nextDouble());
         impact(point, dir);
         if(!super.isBroken()){
             updateBrick();
@@ -97,10 +102,17 @@ public class SuperBrickModel extends BrickModel {
      * @param dir Direction of impact
      */
     public void impact(Point2D point, int dir){
-        if(rnd.nextDouble() < SUPER_PROBABILITY){
+        if(getRandomNumber() < SUPER_PROBABILITY){
             super.impact();
             crack.makeCrack(point,dir);
         }
     }
 
+    public Double getRandomNumber() {
+        return randomNumber;
+    }
+
+    public void setRandomNumber(Double randomNumber) {
+        this.randomNumber = randomNumber;
+    }
 }

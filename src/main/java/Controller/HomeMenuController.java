@@ -25,8 +25,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 /**
- * controller for home menu
+ * controller for home menu,
  * mouse listener and mouse motion listener for home menu
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class HomeMenuController implements MouseListener, MouseMotionListener{
     /**

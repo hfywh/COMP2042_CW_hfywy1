@@ -11,7 +11,10 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 /**
- * Main function of this class is to display info scene
+ * Main function of this class is to display info scene.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class InfoView implements ImageObserver {
 

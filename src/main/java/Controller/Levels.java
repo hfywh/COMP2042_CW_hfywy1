@@ -12,6 +12,9 @@ import java.awt.*;
 
 /**
  * to set up the bricks according to the level
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class Levels {
     private static final int LEVELS_COUNT = 6;

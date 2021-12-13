@@ -22,7 +22,10 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 /**
- * Make model of rubber ball
+ * Make model of rubber ball.
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class RubberBall extends BallModel {
 

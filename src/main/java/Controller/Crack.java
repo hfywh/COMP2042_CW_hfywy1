@@ -7,7 +7,10 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
 /**
- * when the brick get impact but not broken, the brick crack
+ * When the brick get impact but not broken, the brick crack
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class Crack {
     private static final int CRACK_SECTIONS = 3;
@@ -44,6 +47,7 @@ public class Crack {
 
 
     /**
+     * Display the crack of the brick
      * @return crack of the brick
      */
     public GeneralPath draw(){
@@ -59,6 +63,7 @@ public class Crack {
     }
 
     /**
+     * Make the brick crack
      * @param point point of the brick
      * @param direction direction of the impact
      */
@@ -97,7 +102,7 @@ public class Crack {
     }
 
     /**
-     * create a path between start point and end point
+     * Create a path between start point and end point
      * @param start start point
      * @param end end point
      */
@@ -130,6 +135,7 @@ public class Crack {
     }
 
     /**
+     * Create random number
      * @param bound bound for the random integer
      * @return random bound integer
      */
@@ -139,6 +145,7 @@ public class Crack {
     }
 
     /**
+     * Crack in the middle
      * @param i integer
      * @param divisions division of crack
      * @return crack division
@@ -151,7 +158,8 @@ public class Crack {
     }
 
     /**
-     * @param bound bound for the random intger
+     * Crack if the random number more than probability
+     * @param bound bound for the random integer
      * @return randomInbounds or none
      */
     private int jumps(int bound){
@@ -163,6 +171,7 @@ public class Crack {
     }
 
     /**
+     * Make a random point
      * @param from start point
      * @param to end point
      * @param direction direction
@@ -184,6 +193,7 @@ public class Crack {
     }
 
     /**
+     * Get left direction
      * @return left
      */
     public static int getLeft(){
@@ -191,6 +201,7 @@ public class Crack {
     }
 
     /**
+     * Get right direction
      * @return right
      */
     public static int getRight(){
@@ -198,6 +209,7 @@ public class Crack {
     }
 
     /**
+     * Get down direction
      * @return down
      */
     public static int getDown(){
@@ -205,6 +217,7 @@ public class Crack {
     }
 
     /**
+     * Get up direction
      * @return up
      */
     public static int getUp(){

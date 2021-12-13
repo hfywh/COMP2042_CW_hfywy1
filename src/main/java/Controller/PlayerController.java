@@ -23,8 +23,11 @@ import java.awt.*;
 
 
 /**
- * controller for player
+ * controller for player,
  * set up player in game
+ * @author Yong Wei Hian
+ * @since 12/11/2021
+ * @version 1.2
  */
 public class PlayerController {
 
@@ -140,5 +143,9 @@ public class PlayerController {
      */
     public static Color getInnerColor(){
         return INNER_COLOR;
+    }
+
+    public int getMoveAmount() {
+        return moveAmount;
     }
 }
